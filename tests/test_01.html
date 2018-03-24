@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Testing Objects</title>
+    <script>
+        
+        //using top setting games currently on steam
+        var gameNames = [
+            "PLAYERUNKNOWN'S BATTLEGROUNDS",
+            "Far Cry 5",
+            "Ni no Kuni II: Revenant Kingdom",
+            "Grand Theft Auto V",
+            "Tom Clancy's Ghost Recon Wildlands",
+            "Warhammer: Verintide 2",
+            "Divinity: Original Sin 2",
+            "Rocket League",
+            "Counter-Strike: Global Offensive",
+            "Football Manager 2018"
+        ];
+
+
+        function Game(title, price, discount) {
+            this.title = title;
+            this.price = price;
+            this.discount = discount;
+            this.newPrice = this.price - (this.price / 100 * this.discount);
+            
+            this.toString = function(){
+                var str = "Title: " + this.title + ". Price: " + this.newPrice;
+                return str;
+            }
+        }
+
+        var game01 = new Game(gameNames[0], 100, 10);
+        var game02 = new Game(gameNames[2], 50, 20);
+    
+    </script>
+  </head>
+  <body>
+    <h1>Object tests</h1>
+    
+    <p id="objTest"><script>document.getElementById("objTest").innerHTML = game01.toString();</script></p>
+
+    <p id="objTest2"><script>document.getElementById("objTest2").innerHTML = game02.toString();</script></p>
+
+  </br><br>
+  <p><i>Basic functionality created. Will test multidimensional array and adding more information, so element [0] will correspond with PLAYERUNKNOWN'S BATTLEGROUND<br>I also will change the constructor to be game title only and use the element index to determind price and discount<i></i></p>
+  </body>
+
+</html>
