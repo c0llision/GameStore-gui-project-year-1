@@ -2,106 +2,79 @@
 <html>
   <head>
     <title>User Login Page</title>
+    <script src="../js/login.js"></script> 
     <script>
-        //how to store usernames/passwords?
-        var userCount = 3;  //value will be changed if using different storage method
-        var users = [
-           ["User_1", "password"],
-           ["User_2", "password"],
-           ["User_3", "password"]
-       ]
+    var username = "";
+    var password = "";
 
-        function signIn()
+    function getUserAndPass()
+    {
+        username = document.getElementById("usernameInput").value;
+        password = document.getElementById("passwordInput").value;
+    }
+
+    function showLoginMsg(successful, message)
+    {
+        // successful is a boolean to be used to show an x or checkmark along with message
+        document.getElementById("loginMsg").innerHTML = message;
+    }
+    
+    function register() {
+        getUserAndPass();
+
+        if (username.length < MIN_USERNAME_LENGTH)
         {
-            var username = document.getElementById("usernameInput").value;
-            var password = document.getElementById("passwordInput").value;
-            var successfulLogin = false; 
-            var incorrectPassword = false;
-            
-            for (var i = 0; i < users.length; i++)
-            {
-                if (username == users[i][0])
-                {
-                    if(password == users[i][1])
-                    {
-                        successfulLogin = true;
-                    }
-                    else
-                    {
-                        incorrectPassword = true;
-                    }
-                }
-            }
-            if (successfulLogin == true)
-            {
-                alert("Login successful!");
-                localStorage.setItem("user-USERNAME", username);
-                //not sure if there is a need to save password to local storage
-            }
-            else if (incorrectPassword == true)
-            {
-                alert("Incorrect password!");
-            }
-            else
-            {
-                alert("Login unsuccessful");
-            } 
+            showLoginMsg(false, "Username is too short!");
+            return false;
         }
 
-        function newUser()
+        if (password.length < MIN_PASSWORD_LENGTH)
         {
-            var usernameAvailable = true;
-            var username = document.getElementById("usernameInput").value;
-            var password = document.getElementById("passwordInput").value;
-
-            for (var i = 0; i < users.length; i++)
-            {
-                if (username == users[i][0])
-                {
-                    usernameAvailable = false;
-                }
-
-            }
-
-
-            if(username.length > 0) 
-            {
-                if (password.length > 0)
-                {
-                    if(usernameAvailable == true)
-                    { 
-                        users[userCount++] = [username, password];
-                    }
-                    else
-                    {
-                    alert("Username alteady exists")
-                    }
-                }
-                else
-                {
-                alert("invalid password")
-                }
-            }
-            else
-            {
-                alert("invalid username");
-            }
+            showLoginMsg(false, "Password is too short!");
+            return false;
+        }
+        
+        if (isUsernameTaken(username))
+        {
+            showLoginMsg(false, "Username is taken!");
+            return false;
         }
     
-        
+        createUser(username, password);
+        showLoginMsg(false, "Account created successfully!");
+        return true;
+    }
+    
+    function login()
+    {
+        getUserAndPass();
 
+        if(!isUsernameTaken(username))
+        {
+            showLoginMsg(false, "Username does not exist!");
+            return false;
+        }
+
+        if(!checkPassword(username, password))
+        {
+            showLoginMsg(false, "Password is incorrect!");
+            return false;
+        }
+
+        localStorage.setItem("LoggedInUser", username);
+        showLoginMsg(true, "Successfully logged in!");
+        return true;
+    }
     </script>
   </head>
   <body>
     <h1>Login tests</h1>
-        Username: <input id="usernameInput" type="text"><br>
-        Password: <input id="passwordInput" type="text"><br>
-        <button onclick="signIn();">Sign in</button>
-        <button onclick="newUser();">New account</button>
-        <p id="loginAttempt"></p>
 
-
+    Username: <input id="usernameInput" type="text"><br>
+    Password: <input id="passwordInput" type="password"><br>
+    <button onclick="login();">Sign in</button>
+    <button onclick="register();">New account</button>
+    <p id="loginMsg"></p>
 </body>
-
 </html>
 
