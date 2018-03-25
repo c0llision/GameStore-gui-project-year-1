@@ -5,46 +5,82 @@
     <script>
         
         //using top setting games currently on steam
-        var gameNames = [
-            "PLAYERUNKNOWN'S BATTLEGROUNDS",
-            "Far Cry 5",
-            "Ni no Kuni II: Revenant Kingdom",
-            "Grand Theft Auto V",
-            "Tom Clancy's Ghost Recon Wildlands",
-            "Warhammer: Verintide 2",
-            "Divinity: Original Sin 2",
-            "Rocket League",
-            "Counter-Strike: Global Offensive",
-            "Football Manager 2018"
+        var gameList = [
+            ["PLAYERUNKNOWN'S BATTLEGROUNDS", 29.99, 0],
+            ["Far Cry 5", 59.99, 0],
+            ["Ni no Kuni II: Revenant Kingdom", 59.99, 0],
+            ["Grand Theft Auto V", 59.99, .5],
+            ["Tom Clancy's Ghost Recon Wildlands", 59.99, .67],
+            ["Warhammer: Verintide 2", 27.99, 0],
+            ["Divinity: Original Sin 2", 44.99, 0],
+            ["Rocket League", 19.99, .4],
+            ["Counter-Strike: Global Offensive",13.99, 0],
+            ["Football Manager 2018", 54.99, .5]
+        ];
+        //imageList
+        var gameImg = [
+            ["../image/PUBG.png"],
+            ["../image/Farcry5.png"],
+            ["../image/Ni no Kuni 2.png"],  
+            ["../image/GTAV.png"],      
+            ["../image/GhostRecon.png"], 
+            ["../image/Vermintide 2.png"],  
+            ["../image/Divinity OS 2.png"],  
+            ["../image/RocketLeague.png"],
+            ["../image/CounterStrike.png"],  
+            ["../image/FootballManager 2018.png"],
         ];
 
+        function Game(index) {
+            this.title = gameList[index][0];
+            this.price = gameList[index][1];
+            this.discount = gameList[index][2];
 
-        function Game(title, price, discount) {
-            this.title = title;
-            this.price = price;
-            this.discount = discount;
-            this.newPrice = this.price - (this.price / 100 * this.discount);
+            if (this.discount == 0)
+            {
+                this.newPrice = this.price;
+            }
+            else
+            {   //-0.005 solves rounding problem, hopefully this will not create problems for adding totals
+                this.newPrice = this.price * (1 - this.discount) - 0.005;
+            }
+
+            this.image = gameImg[index];
             
             this.toString = function(){
-                var str = "Title: " + this.title + ". Price: " + this.newPrice;
+                var str = "<img src=\"" + this.image + "\" alt=\"" + this.title + "\"></br>" + this.title + ", " + this.newPrice.toFixed(2);
                 return str;
             }
         }
 
-        var game01 = new Game(gameNames[0], 100, 10);
-        var game02 = new Game(gameNames[2], 50, 20);
-    
+        var game01 = new Game(0);
+        var game02 = new Game(1);
+        var game03 = new Game(2);
+        var game04 = new Game(3);
+        var game05 = new Game(4);
+        var game06 = new Game(5);
+        var game07 = new Game(6);
+        var game08 = new Game(7);
+        var game09 = new Game(8);
+        var game10 = new Game(9);
     </script>
   </head>
   <body>
     <h1>Object tests</h1>
     
-    <p id="objTest"><script>document.getElementById("objTest").innerHTML = game01.toString();</script></p>
+    <!--comments -->
+    <p><i>Objects are referenced by index, right now I'm not sure if each game should get its own page with information</br> But I guess next step is to create a functioning shopping cart.</i></p>
+        <p id="objTest1"><script>document.getElementById("objTest1").innerHTML = game01.toString();</script></p>
+        <p id="objTest2"><script>document.getElementById("objTest2").innerHTML = game02.toString();</script></p>
+        <p id="objTest3"><script>document.getElementById("objTest3").innerHTML = game03.toString();</script></p>
+        <p id="objTest4"><script>document.getElementById("objTest4").innerHTML = game04.toString();</script></p>
+        <p id="objTest5"><script>document.getElementById("objTest5").innerHTML = game05.toString();</script></p>
+        <p id="objTest6"><script>document.getElementById("objTest6").innerHTML = game06.toString();</script></p>
+        <p id="objTest7"><script>document.getElementById("objTest7").innerHTML = game07.toString();</script></p>
+        <p id="objTest8"><script>document.getElementById("objTest8").innerHTML = game08.toString();</script></p>
+        <p id="objTest9"><script>document.getElementById("objTest9").innerHTML = game09.toString();</script></p>
+        <p id="objTest0"><script>document.getElementById("objTest0").innerHTML = game10.toString();</script></p> 
 
-    <p id="objTest2"><script>document.getElementById("objTest2").innerHTML = game02.toString();</script></p>
-
-  </br><br>
-  <p><i>Basic functionality created. Will test multidimensional array and adding more information, so element [0] will correspond with PLAYERUNKNOWN'S BATTLEGROUND<br>I also will change the constructor to be game title only and use the element index to determind price and discount<i></i></p>
-  </body>
+</body>
 
 </html>
