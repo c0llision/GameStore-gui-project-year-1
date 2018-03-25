@@ -6,38 +6,25 @@
     <script src="../js/game.js"></script> 
     <script>
         
-        //using top setting games currently on steam
- var gameList = [
-            ["PLAYERUNKNOWN'S BATTLEGROUNDS", 29.99, 0],
-            ["Far Cry 5", 59.99, 0],
-            ["Ni no Kuni II: Revenant Kingdom", 59.99, 0],
-            ["Grand Theft Auto V", 59.99, .5],
-            ["Tom Clancy's Ghost Recon Wildlands", 59.99, .67],
-            ["Warhammer: Verintide 2", 27.99, 0],
-            ["Divinity: Original Sin 2", 44.99, 0],
-            ["Rocket League", 19.99, .4],
-            ["Counter-Strike: Global Offensive",13.99, 0],
-            ["Football Manager 2018", 54.99, .5]
-        ];
-
-        var gameImg = [
-            ["../image/PUBG.png"],
-            ["../image/Farcry5.png"],
-            ["../image/Ni no Kuni 2.png"],  
-            ["../image/GTAV.png"],      
-            ["../image/GhostRecon.png"], 
-            ["../image/Vermintide 2.png"],  
-            ["../image/Divinity OS 2.png"],  
-            ["../image/RocketLeague.png"],
-            ["../image/CounterStrike.png"],  
-            ["../image/FootballManager 2018.png"],
+        // Name, Price, Discount (out of 100), Image
+        var gameList = [
+            ["PLAYERUNKNOWN'S BATTLEGROUNDS",      29.99, 0,   "../image/PUBG.png"],
+            ["Far Cry 5",                          59.99, 0,   "../image/Farcry5.png"],
+            ["Ni no Kuni II: Revenant Kingdom",    59.99, 0,   "../image/Ni no Kuni 2.png"],
+            ["Grand Theft Auto V",                 59.99, 50,  "../image/GTAV.png"],
+            ["Tom Clancy's Ghost Recon Wildlands", 59.99, 67,  "../image/GhostRecon.png"],
+            ["Warhammer: Verintide 2",             27.99, 0,   "../image/Vermintide 2.png"],
+            ["Divinity: Original Sin 2",           44.99, 0,   "../image/Divinity OS 2.png"],
+            ["Rocket League",                      19.99, 40,  "../image/RocketLeague.png"],
+            ["Counter-Strike: Global Offensive",   13.99, 0,   "../image/CounterStrike.png"],
+            ["Football Manager 2018",              54.99, 50,  "../image/FootballManager 2018.png"]
         ];
 
         var games = []
 
         for (i=0; i < gameList.length; i++)
         {
-            games[i] = new Game(gameList[i][0], gameList[i][1], gameList[i][2], gameImg[i]);
+            games[i] = new Game(gameList[i][0], gameList[i][1], gameList[i][2], gameList[i][3]);
         }
     </script>
   </head>
