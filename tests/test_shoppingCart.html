@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Shopping Cart Objects</title>
+    <script>
+        //temp solution, will draw name from shared array when connected
+        var gameList = [
+            ["PLAYERUNKNOWN'S BATTLEGROUNDS", 29.99, 0],
+            ["Far Cry 5", 59.99, 0],
+            ["Ni no Kuni II: Revenant Kingdom", 59.99, 0],
+            ["Grand Theft Auto V", 59.99, .5],
+            ["Tom Clancy's Ghost Recon Wildlands", 59.99, .67],
+            ["Warhammer: Verintide 2", 27.99, 0],
+            ["Divinity: Original Sin 2", 44.99, 0],
+            ["Rocket League", 19.99, .4],
+            ["Counter-Strike: Global Offensive",13.99, 0],
+            ["Football Manager 2018", 54.99, .5]
+        ]; 
+
+        //will use default shopping carts, and allow user to create shopping cart later.
+        function ShoppingCart(username) {
+            this.username = username;
+            //This will make further purchasing of this item impossible
+            this.library = [false, true, false, false, false, false, false, false, false, false];
+
+            //update library method, I think depends on how the UI appears, a check list would be simplest 
+            this.updateLibrary = function(){
+               
+                for (var i = 0; i < this.library.length; i++)
+                {
+                    var checkBox = document.getElementById("checkBox0" + i);
+                    
+                    if
+                    (checkBox.checked == true)
+                    {
+                        this.library[i] = true;
+                    }
+                    else
+                    {
+                        this.library[i] = false;
+                    }
+                }
+                document.getElementById("objTest1").innerHTML = this.toString();
+            }
+
+            this.libraryToString = function()
+            {
+                for (var i = 0; i < this.library.length; i++)
+                {
+                    if (this.library[i] == true)
+                    {
+                        document.getElementById("checkBox0" + i).checked = true; 
+                    }
+                    else
+                    {
+                        document.getElementById("checkBox0" + i).checked = false;
+                    }
+                }//for
+            }
+
+            this.toString = function(){
+                var str = "Username: " + this.username + "</br>Games in library:</br>";
+
+                for (var i = 0; i < this.library.length; i++)
+                {
+                    if (this.library[i] == true)
+                    {
+                       str += gameList[i][0] + "</br>";
+                    }
+                }
+                return str;
+            }
+        }
+
+
+        var user01 = new ShoppingCart("username");
+    </script>
+  </head>
+  <body>
+    <h1>Shopping cart tests</h1>
+    <p><i>This looks like an account profile page, object code might be useable elsewhere. Unsure how to implement user account creation.</body>i></p>
+    
+        <p id="objTest1"><script>document.getElementById("objTest1").innerHTML = user01.toString();</script></p>
+        <p></p>
+        <script>user01.libraryToString()</script>
+        <input id="checkBox00" type="checkbox">PUBG
+        </br><input id="checkBox01" type="checkbox">Farcry 5
+        </br><input id="checkBox02" type="checkbox">Ni no Kuni II
+        </br><input id="checkBox03" type="checkbox">GTAV 
+        </br><input id="checkBox04" type="checkbox">Ghost Recon
+        </br><input id="checkBox05" type="checkbox">Verintide II 
+        </br><input id="checkBox06" type="checkbox">Divinity II
+        </br><input id="checkBox07" type="checkbox">Rocker League 
+        </br><input id="checkBox08" type="checkbox">Counter-Strike 
+        </br><input id="checkBox09" type="checkbox">Football Manager 2018 
+       <!-- Problem with how this button calls the method, variables are out of scope I think if not created inside constructor -->
+        <script>user01.libraryToString()</script>
+        </br><button onclick="user01.updateLibrary()">Update</button>
+
+</body>
+
+</html>
+
