@@ -45,6 +45,7 @@
                 alert("Login unsuccessful");
             } 
         }
+
         function newUser()
         {
             var usernameAvailable = true;
@@ -61,33 +62,30 @@
             }
 
 
-        if(username.length > 0) 
-        {
-            if (password.length > 0)
+            if(username.length > 0) 
             {
-                if(usernameAvailable == true)
-                { 
-                    users[userCount++] = [username, password];
+                if (password.length > 0)
+                {
+                    if(usernameAvailable == true)
+                    { 
+                        users[userCount++] = [username, password];
+                    }
+                    else
+                    {
+                    alert("Username alteady exists")
+                    }
                 }
                 else
                 {
-                alert("Username alteady exists")
+                alert("invalid password")
                 }
             }
             else
             {
-             alert("invalid password")
+                alert("invalid username");
             }
         }
-        else
-        {
-            alert("invalid username");
-        }
-        
-
-       (username.length > 0)
-       (password.length > 0)
-       }
+    
         
 
     </script>
