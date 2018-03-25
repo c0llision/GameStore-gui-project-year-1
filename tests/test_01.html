@@ -7,43 +7,17 @@
     <script>
         
         //using top setting games currently on steam
-        var gameNames = [
-            "PLVYERUNKNOWN'S BATTLEGROUNDS",
-            "Far Cry 5",
-            "Ni no Kuni II: Revenant Kingdom",
-            "Grand Theft Auto V",
-            "Tom Clancy's Ghost Recon Wildlands",
-            "Warhammer: Verintide 2",
-            "Divinity: Original Sin 2",
-            "Rocket League",
-            "Counter-Strike: Global Offensive",
-            "Football Manager 2018"
-        ];
-
-        var gamePrices = [
-            29.99,
-            59.99,
-            59.99,
-            59.99,
-            59.99,
-            27.99,
-            44.99,
-            19.99,
-            13.99,
-            54.99
-        ]
-
-        var gameDiscounts = [
-            0,
-            0,
-            25,
-            50,
-            67,
-            21,
-            11,
-            0,
-            0,
-            0
+ var gameList = [
+            ["PLAYERUNKNOWN'S BATTLEGROUNDS", 29.99, 0],
+            ["Far Cry 5", 59.99, 0],
+            ["Ni no Kuni II: Revenant Kingdom", 59.99, 0],
+            ["Grand Theft Auto V", 59.99, .5],
+            ["Tom Clancy's Ghost Recon Wildlands", 59.99, .67],
+            ["Warhammer: Verintide 2", 27.99, 0],
+            ["Divinity: Original Sin 2", 44.99, 0],
+            ["Rocket League", 19.99, .4],
+            ["Counter-Strike: Global Offensive",13.99, 0],
+            ["Football Manager 2018", 54.99, .5]
         ];
 
         var gameImg = [
@@ -59,12 +33,11 @@
             ["../image/FootballManager 2018.png"],
         ];
 
-
         var games = []
 
-        for (i=0; i < gameNames.length; i++)
+        for (i=0; i < gameList.length; i++)
         {
-            games[i] = new Game(gameNames[i], gamePrices[i], gameDiscounts[i],gameImg[i]);
+            games[i] = new Game(gameList[i][0], gameList[i][1], gameList[i][2], gameImg[i]);
         }
     </script>
   </head>
