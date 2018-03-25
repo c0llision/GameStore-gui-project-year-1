@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Shopping Cart Objects</title>
+    <script>
+        //temp solution, will draw name from shared array when connected
+        var gameList = [
+            [100, "PLAYERUNKNOWN'S BATTLEGROUNDS"],
+            [101, "Far Cry 5"],
+            [102, "Ni no Kuni II: Revenant Kingdom"],
+            [103, "Grand Theft Auto V"],
+            [104, "Tom Clancy's Ghost Recon Wildlands"],
+            [105, "Warhammer: Verintide 2"],
+            [106, "Divinity: Original Sin 2"],
+            [107, "Rocket League"],
+            [108, "Counter-Strike: Global Offensive"],
+            [109, "Football Manager 2018"]
+        ];
+        
+        //temp userList
+        var userList = [
+            [0, "User_1", 1, 0, 0, 1, 0, 0, 0, 0, 0, 0],
+            [0, "User_2", 0, 1, 0, 0, 0, 0, 0, 1, 0, 0],
+            [0, "User_3", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0]
+        ]
+        var users= []
+        var logedUserIndex;
+        var currentUserID = 1000;
+       
+       
+        //find user index - setting to local storage, not sure if I
+        function userSearch()
+        {
+            for (var i = 0; i < userList.length; i++)
+            {
+                if (userList[i][1] == localStorage.getItem("user-USERNAME"))
+                {
+                     logedUserIndex = i;
+                }
+            }
+        }
+        userSearch();
+        //assigning saved users
+        for (i=0; i < userList.length; i++)
+        {      //will need to be modified to allow for new user
+            users[i] = new User_Profile(userList[0][1]);
+        }
+        //will use default shopping carts, and allow user to create shopping cart later.
+        function User_Profile(username)
+        {
+            this.username = username;
+            //unique ID is given, set to index [?][0]
+            this.userID = currentUserID++;
+            //This will make further purchasing of this item impossible
+            this.library = [ //0, 1, 1, 0, 0, 0, 1, 0, 0, 1
+                userList[logedUserIndex][2], userList[logedUserIndex][3], userList[logedUserIndex][4],
+                userList[logedUserIndex][5], userList[logedUserIndex][6], userList[logedUserIndex][7],
+                userList[logedUserIndex][8], userList[logedUserIndex][9], userList[logedUserIndex][10],
+                userList[logedUserIndex][11]
+            ];
+
+            //update library method, I think depends on how the UI appears, a check list would be simplest 
+            this.updateLibrary = function(){
+               
+                for (var i = 0; i < this.library.length; i++)
+                {
+                    var checkBox = document.getElementById("checkBox0" + i);
+                    
+                    if
+                    (checkBox.checked == true)
+                    {
+                        this.library[i] = 1;
+                    }
+                    else
+                    {
+                        this.library[i] = 0;
+                    }
+                }
+                document.getElementById("objTest1").innerHTML = this.toString();
+            }
+
+            this.libraryToString = function()
+            {
+                for (var i = 0; i < this.library.length; i++)
+                {
+                    if (this.library[i] == 1)
+                    {
+                        document.getElementById("checkBox0" + i).checked = true; 
+                    }
+                    else
+                    {
+                        document.getElementById("checkBox0" + i).checked = false;
+                    }
+                }//for
+            }
+
+            this.toString = function(){
+                var str = "Username: " + this.username + "</br>Games in library:</br>";
+
+                for (var i = 0; i < this.library.length; i++)
+                {
+                    if (this.library[i] == 1)
+                    {
+                       str += gameList[i][1] + "</br>";
+                    }
+                }
+                return str;
+            }
+
+        //userCheckbox
+        }
+
+
+
+
+    </script>
+  </head>
+  <body>
+    <h1>Shopping cart tests</h1>
+    <p><i>This looks like an account profile page, object code might be useable elsewhere. Unsure how to implement user account creation.</body>i></p>
+    
+        <p id="objTest1"><script>document.getElementById("objTest1").innerHTML = users[logedUserIndex].toString();</script></p>
+        <p id="userCheckList"><script> </script></p>
+        <input id="checkBox00" type="checkbox">PUBG
+        </br><input id="checkBox01" type="checkbox">Farcry 5
+        </br><input id="checkBox02" type="checkbox">Ni no Kuni II
+        </br><input id="checkBox03" type="checkbox">GTAV 
+        </br><input id="checkBox04" type="checkbox">Ghost Recon
+        </br><input id="checkBox05" type="checkbox">Verintide II 
+        </br><input id="checkBox06" type="checkbox">Divinity II
+        </br><input id="checkBox07" type="checkbox">Rocker League 
+        </br><input id="checkBox08" type="checkbox">Counter-Strike 
+        </br><input id="checkBox09" type="checkbox">Football Manager 2018 
+       <!-- Problem with how this button calls the method, variables are out of scope I think if not created inside constructor -->
+        <script>users[0].libraryToString()</script>
+        </br><button onclick="users[logedUserIndex].updateLibrary()">Update</button>
+        <script>alert(users[logedUserIndex].userID);</script>
+
+</body>
+
+</html>
+

@@ -6,9 +6,9 @@
         //how to store usernames/passwords?
         var userCount = 3;  //value will be changed if using different storage method
         var users = [
-           ["Default_User", "password"],
            ["User_1", "password"],
-           ["User_2", "password"]
+           ["User_2", "password"],
+           ["User_3", "password"]
        ]
 
         function signIn()
@@ -35,6 +35,8 @@
             if (successfulLogin == true)
             {
                 alert("Login successful!");
+                localStorage.setItem("user-USERNAME", username);
+                //not sure if there is a need to save password to local storage
             }
             else if (incorrectPassword == true)
             {
