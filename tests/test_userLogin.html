@@ -47,15 +47,49 @@
         }
         function newUser()
         {
+            var usernameAvailable = true;
             var username = document.getElementById("usernameInput").value;
             var password = document.getElementById("passwordInput").value;
 
-            if ((username.length > 0)&&(password.length > 0))
+            for (var i = 0; i < users.length; i++)
             {
-                users[userCount] = [username, password];
-                userCount++;
+                if (username == users[i][0])
+                {
+                    usernameAvailable = false;
+                }
+
+            }
+
+
+        if(username.length > 0) 
+        {
+            if (password.length > 0)
+            {
+                if(usernameAvailable == true)
+                { 
+                    alert(userCount);
+                    users[userCount++] = [username, password];
+                    alert(userCount);
+                }
+                else
+                {
+                alert("Username alteady exists")
+                }
+            }
+            else
+            {
+             alert("invalid password")
             }
         }
+        else
+        {
+            alert("invalid username");
+        }
+        
+
+       (username.length > 0)
+       (password.length > 0)
+       }
         
 
     </script>
