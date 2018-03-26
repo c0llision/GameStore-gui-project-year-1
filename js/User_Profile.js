@@ -1,8 +1,8 @@
-        function User_Profile(username)
+        function User_Profile(id, username)
         {
             this.username = username;
             //unique ID is given, set to index [?][0]
-            this.userID = currentUserID++;
+            this.userID = id;
             //This will make further purchasing of this item impossible
             this.library = [ //0, 1, 1, 0, 0, 0, 1, 0, 0, 1
                 userList[logedUserIndex][2], userList[logedUserIndex][3], userList[logedUserIndex][4],

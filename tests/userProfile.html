@@ -19,32 +19,41 @@
         ];
         
         //temp userList
-        var userList = [
-            [0, "User_1", 1, 0, 0, 1, 0, 0, 0, 0, 0, 0],
-            [0, "User_2", 0, 1, 0, 0, 0, 0, 0, 1, 0, 0],
-            [0, "User_3", 0, 0, 1, 0, 0, 0, 0, 0, 0, 0]
-        ]
+        var userList = [];
         var users= []
         var logedUserIndex;
-        var currentUserID = 1000;
+        var currentUserID = 0;
        
-       
+          for (var i = 0; i < localStorage.length; i++)
+        {
+
+                //add to userList array, if begins with "user-"
+                if (localStorage.key(i).includes("user-"))
+                {
+                    var username = (localStorage.key(i)).substring(5);
+                    userList[currentUserID] = [currentUserID++, username, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                }
+        } 
         //find user index - setting to local storage, not sure if I
         function userSearch()
         {
             for (var i = 0; i < userList.length; i++)
             {
-                if (userList[i][1] == localStorage.getItem("user-USERNAME"))
+                //I think this works, not sure how to test it rn
+                alert(localStorage.getItem("LoggedInUser"))
+                if (userList[i][1] == localStorage.getItem("LoggedInUser"))
                 {
-                     logedUserIndex = i;
+                     logedUserIndex = userList[i][0];
+                    // alert(logedUserIndex);
                 }
             }
         }
         userSearch();
+
         //assigning saved users
         for (i=0; i < userList.length; i++)
         {      //will need to be modified to allow for new user
-            users[i] = new User_Profile(userList[0][1]);
+            users[i] = new User_Profile(userList[0][0], userList[0][1]);
         }
 
     </script>
@@ -52,7 +61,6 @@
   <body>
     <h1>Shopping cart tests</h1>
     <p><i>This looks like an account profile page, object code might be useable elsewhere. Unsure how to implement user account creation.</body>i></p>
-    
         <p id="objTest1"><script>document.getElementById("objTest1").innerHTML = users[logedUserIndex].toString();</script></p>
         <p id="userCheckList"><script> </script></p>
         <input id="checkBox00" type="checkbox">PUBG
