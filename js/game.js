@@ -1,4 +1,5 @@
-function Game(name, price, discount, image) {
+function Game(id, name, price, discount, image) {
+    this.id = id;
     this.title = name;
     this.price = price;
     this.discount = discount;
@@ -23,13 +24,9 @@ function Game(name, price, discount, image) {
         return str;
     }
 
-    //var cartCount = 0;
     this.addToCart = function(){
-    
         alert("TEST: " + this.title + " added to shopping cart");
-        //used to store items in shopping cart, will need to add unique ID to games
-        //will need to ensure that game can only add once, so will need to search local storage first before adding
-        //localStorage.setItem(, this.ID);
+        localStorage.setItem(("productID#" + this.id), this.id); //could use a better name for key ID
     }
 
 }
