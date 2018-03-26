@@ -29,18 +29,14 @@
     </script>
   </head>
   <body>
-    <h1>Object tests</h1>
-    
-    <!--comments -->
-    <p><i>Objects are referenced by index, right now I'm not sure if each game should get its own page with information</br> But I guess next step is to create a functioning shopping cart.</i></p>
 
     <script>
         for (i=0; i < games.length; i++)
         {
-            document.write("<p>" + games[i].toString() + "<button>Add to Cart</button></p>");
+            document.write("<p>" + games[i].toString() + "</p>");
         }
     </script>
-   <button>Check Out</button>
+   <button onclick="games[0].addToCart()">Check Out</button>
    <!-- Add to cart button should identify which item is being added and save data to local var -->
    <!-- Checkout button should being to checkout page, checkout page to be rebuilt -->
    <!-- TODO: Connect with other pages --> 
