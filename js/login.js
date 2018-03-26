@@ -28,3 +28,14 @@ function isUsernameTaken(username) {
         return false;
     }
 }
+
+function getLoggedInUser() {
+    if (localStorage.getItem("LoggedInUser") === null)
+    {
+        return false;
+    }
+    else
+    {
+        return localStorage.getItem("LoggedInUser");
+    }
+}
