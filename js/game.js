@@ -26,7 +26,8 @@ function Game(id, name, price, discount, image) {
 
     this.addToCart = function(){
         alert("TEST: " + this.title + " added to shopping cart");
-        localStorage.setItem(("productID#" + this.id), this.id); //could use a better name for key ID
+        //assigns to local storage, could use product name as the key, will this make for easier identification on other pages?
+        localStorage.setItem(("productID#" + this.id), this.id); 
     }
 
 }

@@ -33,6 +33,14 @@
                 
             }
         }
+        function wipeCart(){
+            //var str = "No items in basket";
+            for (var i = 0; i <= cartCount; i++){
+                cart[i] = [];
+            }
+            cartCount = 0;
+            //document.getElementById("shoppingList").innerHTML = str;
+        }
         updateCart();
         //will use default shopping carts, and allow user to create shopping cart later.
         function ShoppingCart(id, title, price, discount) {
@@ -46,13 +54,30 @@
                 str += "<button onclick=\'cart[" + i + "].removeFromCart()\'>Remove from Cart</button>";
                 
                 return str;
+                //document.getElementById("shoppingList").innerHTML = str;
             }
 
             this.removeFromCart = function(){
                 localStorage.removeItem("productID#" + id);
+                wipeCart();
+                updateCart();
+                
+            //document.getElementById("shoppingList").innerHTML = "str";
+                updateCartList();
             }
         }
 
+        function  updateCartList(){
+            var str = "";
+            for (i=0; i < cart.length; i++) 
+            {
+                str += "<p>" + cart[i].toString() + "</p>";
+            }
+
+            document.getElementById("shoppingList").innerHTML = str;
+
+        }
+        //updateCartList();   
     </script>
   </head>
   <body>
@@ -60,12 +85,13 @@
 
 
     <script>
-        for (i=0; i < cart.length; i++)
-        {
-            document.write("<p>" + cart[i].toString() + "</p>");
-        }
-    </script>
+        //currently must press f5 for page to update, will work on fix.
+ 
 
+    </script>
+    <p id="shoppingList">Shopping Cart Empty.</p>
+    <script>updateCartList();</script>
+   <button onclick="window.location='Shopping_Page.html'">Return to shop</button>
 </body>
 
 </html>
