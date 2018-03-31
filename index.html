@@ -26,7 +26,7 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" href="#">GameStore</a>
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav">
           <li class="nav-item active">
             <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
           </li>
@@ -43,8 +43,16 @@
     </nav>
     <br>
 
-    <div id="container" class="container">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-9" id="container">
+        </div>
+        <div class="col-lg-3" style="border-left: 1px dotted black;">
+            <h2>Shopping Cart</h2>
+        </div>
+      </div>
     </div>
+
 
     <script>
         var container = document.getElementById("container");
@@ -60,7 +68,7 @@
             var title = createHTMLTag('div', 'h6', col);
             var img = createHTMLTag('img', '', col);
             var priceTag = createHTMLTag('p', 'priceTag', col);
-            var addToCart = createHTMLTag('button', 'addToCart', col);
+            var addToCart = createHTMLTag('button', 'btn btn-primary', col);
 
             title.innerHTML = games[i].title;
             img.src = games[i].image;
