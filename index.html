@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="js/game.js"></script>
     <script src="js/main.js"></script>
-    <link rel="stylesheet" href="css/main.js"></script>
+    <link rel="stylesheet" href="css/main.js">
 
     <script>
         function createHTMLTag(type, className, parentTag)
@@ -20,6 +20,13 @@
            return tag
         }
     </script>
+
+    <style>
+    .itemImg {
+        max-width: 100%;
+        height: auto;
+    }
+    </style>
 
     <title>GameStore - Homepage</title>
   </head>
@@ -59,14 +66,14 @@
 
         for (i=0; i < games.length; i++)
         {
-            if (i % 2 == 0)
+            if (i % 3 == 0)
             {
               var row = createHTMLTag('div', 'row', container);
             }
 
-            var col = createHTMLTag('div', 'col', row);
+            var col = createHTMLTag('div', 'col-md-4', row);
             var title = createHTMLTag('div', 'h6', col);
-            var img = createHTMLTag('img', '', col);
+            var img = createHTMLTag('img', 'itemImg', col);
             var priceTag = createHTMLTag('p', 'priceTag', col);
             var addToCart = createHTMLTag('button', 'btn btn-primary', col);
 
