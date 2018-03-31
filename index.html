@@ -7,11 +7,50 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="js/game.js"></script>
+    <script src="js/main.js"></script>
+    <link rel="stylesheet" href="css/main.js"></script>
+
+    <script>
+        function createHTMLTag(type, className, parentTag)
+        {
+           var tag = document.createElement(type);
+           tag.className = className;
+           parentTag.appendChild(tag);
+           return tag
+        }
+    </script>
 
     <title>Hello, world!</title>
   </head>
   <body>
     <h1>Hello, world!</h1>
+
+    <div id="container" class="container">
+    </div>
+
+    <script>
+        var container = document.getElementById("container");
+
+        for (i=0; i < games.length; i++)
+        {
+            if (i % 2 == 0)
+            {
+              var row = createHTMLTag('div', 'row', container);
+            }
+
+            var col = createHTMLTag('div', 'col', row);
+            var title = createHTMLTag('div', 'h6', col);
+            var img = createHTMLTag('img', '', col);
+            var priceTag = createHTMLTag('p', 'priceTag', col);
+            var addToCart = createHTMLTag('button', 'addToCart', col);
+
+            title.innerHTML = games[i].title;
+            img.src = games[i].image;
+            priceTag.innerHTML = "Price: " + games[i].price;
+            addToCart.innerHTML = "Add To Cart";
+        }
+    </script>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
