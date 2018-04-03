@@ -9,17 +9,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="js/game.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/cart.js"></script>
     <link rel="stylesheet" href="css/main.js">
-
-    <script>
-        function createHTMLTag(type, className, parentTag)
-        {
-           var tag = document.createElement(type);
-           tag.className = className;
-           parentTag.appendChild(tag);
-           return tag
-        }
-    </script>
 
     <style>
     .itemImg {
@@ -31,6 +22,7 @@
     <title>GameStore - Homepage</title>
   </head>
   <body>
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" href="#">GameStore</a>
         <ul class="navbar-nav">
@@ -56,12 +48,25 @@
         </div>
         <div class="col-lg-3" style="border-left: 1px dotted black;">
             <h2>Shopping Cart</h2>
+            <div id="cart">
+            </div>
         </div>
       </div>
     </div>
 
 
     <script>
+        function updateCart() {
+            var cartDiv = document.getElementById('cart');
+            cartDiv.innerHTML = '';
+            for (var i=0; i < cart.length; i++)
+            {
+                var cartItem = createHTMLTag('p','',cartDiv);
+                var gameDetails = getGameById(cart[i]);
+                cartItem.innerHTML += gameDetails.title;
+            }
+        }
+
         var container = document.getElementById("container");
 
         for (i=0; i < games.length; i++)
@@ -75,12 +80,26 @@
             var title = createHTMLTag('div', 'h6', col);
             var img = createHTMLTag('img', 'itemImg', col);
             var priceTag = createHTMLTag('p', 'priceTag', col);
-            var addToCart = createHTMLTag('button', 'btn btn-primary', col);
+            var addBtn = createHTMLTag('button', 'btn btn-primary', col);
 
-            title.innerHTML = games[i].title;
-            img.src = games[i].image;
-            priceTag.innerHTML = "Price: " + games[i].price;
-            addToCart.innerHTML = "Add To Cart";
+            game = games[i];
+
+            title.innerHTML = game.title;
+            img.src = game.image;
+            priceTag.innerHTML = "Price: " + game.price;
+            addBtn.innerHTML = "Add To Cart";
+            addBtn.id = game.id;
+            addBtn.onclick = function(){
+                if (!isGameInCart(this.id))
+                {
+                    addToCart(this.id);
+                    updateCart();
+                }
+                else
+                {
+                    console.log('already in cart');
+                }
+            };
         }
     </script>
 
