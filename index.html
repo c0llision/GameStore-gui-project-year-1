@@ -48,7 +48,25 @@
         </div>
         <div class="col-lg-3" style="border-left: 1px dotted black;">
             <h2>Shopping Cart</h2>
-            <div id="cart">
+            <div id="cartTable" style="visibility:hidden;">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Title<th>
+                      <th scope="col">Price</th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody id="cart">
+                    <tr>
+                      <th>1</th>
+                      <td>PLAYERUNKNOWN'S BATTLEGROUNDS</td>
+                      <td>59.99</td>
+                      <td>x</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <b>Sub total: </b> <span id="subtotal">0.00</span>
             </div>
         </div>
       </div>
@@ -57,14 +75,44 @@
 
     <script>
         function updateCart() {
+            var cartTable = document.getElementById('cartTable');
             var cartDiv = document.getElementById('cart');
             cartDiv.innerHTML = '';
+            var subTotal = 0;
+
+            if (cart.length > 0)
+            {
+                cartTable.style="visibility:visible;";
+            }
+            else
+            {
+                cartTable.style="visibility:hidden;";
+            }
+
             for (var i=0; i < cart.length; i++)
             {
-                var cartItem = createHTMLTag('p','',cartDiv);
+                var row = createHTMLTag('tr','',cartDiv);
+                var heading = createHTMLTag('th','', row);
+                var title = createHTMLTag('td','',row);
+                var price = createHTMLTag('td','',row);
+                var close = createHTMLTag('td','',row);
+                var closeBtn = createHTMLTag('button', 'close', close);
+
                 var gameDetails = getGameById(cart[i]);
-                cartItem.innerHTML += gameDetails.title;
+                subTotal += parseFloat(gameDetails.price.toFixed(2));
+
+                heading.innerHTML = (i+1);
+                title.innerHTML = gameDetails.title;
+                price.innerHTML = gameDetails.price;
+                closeBtn.innerHTML = 'x';
+                closeBtn.id = i;
+                closeBtn.onclick = function() {
+                    removeFromCart(this.id);
+                    updateCart();
+                };
             }
+            var subTotalObj = document.getElementById('subtotal');
+            subTotalObj.innerHTML = subTotal.toFixed(2);
         }
 
         var container = document.getElementById("container");

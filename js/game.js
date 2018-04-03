@@ -12,7 +12,7 @@ function Game(id, name, price, discount, image) {
     else
     {   //-0.005 solves rounding problem, hopefully this will not create problems for adding totals
         //changes actual price, sets boolean to true, so we see which has been disconnted (can add visual indication later)
-        this.price = (this.price - (this.price * (this.discount/100)) - 0.005).toFixed(2);
+        this.newPrice = (this.price - (this.price * (this.discount/100)) - 0.005).toFixed(2);
         //this.price = this.price + ", discounted";
         this.isDiscounted = true;
     }
