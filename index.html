@@ -100,12 +100,11 @@
                 price.innerHTML = gameDetails.price;
                 closeBtn.innerHTML = 'x';
                 closeBtn.id = i;
-                closeBtn.onclick = function() {
+                closeBtn.addEventListener("click", function() {
                     removeFromCart(this.id);
                     updateCart();
-                };
+                });
             }
-
             updateSubTotal(newSubTotal);
         }
     </script>
@@ -206,7 +205,7 @@
             priceTag.innerHTML = "Price: " + game.price;
             addBtn.innerHTML = "Add To Cart";
             addBtn.id = game.id;
-            addBtn.onclick = function(){
+            addBtn.addEventListener("click", function() {
                 if (!isGameInCart(this.id))
                 {
                     addToCart(this.id);
@@ -216,7 +215,7 @@
                 {
                     console.log('already in cart');
                 }
-            };
+            });
         }
     </script>
 
