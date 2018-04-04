@@ -36,7 +36,6 @@
         {
             for (var i = 0; i < users.length; i++)
             {
-                alert(localStorage.getItem("LoggedInUser"))
                 if (users[i].username == localStorage.getItem("LoggedInUser"))
                 {
                      logedUserIndex = users[i].userID;
@@ -45,6 +44,7 @@
             }
         }
 
+        localStorage.setItem("test", [0, 1, 0]);
 
 
 

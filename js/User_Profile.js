@@ -25,6 +25,8 @@
                         this.library[i] = 0;
                     }
                 }
+                localStorage.setItem("library-" + this.userID, JSON.stringify(this.library));
+
                 document.getElementById("objTest1").innerHTML = this.toString();
             }
 
@@ -45,6 +47,19 @@
 
             this.toString = function(){
                 var str = "Username: " + this.username + "</br>Games in library:</br>";
+
+                
+                for (var i = 0; i < localStorage.length; i++)
+                {
+                    //add to userList array, if begins with "user-"
+                    if (localStorage.key(i).includes("library-" + this.userID))
+                    {
+                        //alert(this.library);
+                         this.library = JSON.parse(localStorage.getItem("library-" + this.userID));
+                        //this.library = localStorage.getItem();
+                    }
+                } 
+                
 
                 for (var i = 0; i < this.library.length; i++)
                 {
