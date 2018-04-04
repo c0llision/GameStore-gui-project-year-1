@@ -1,5 +1,12 @@
 //  global vars and functions used on index.html page
 
+function createHTMLTag(type, className, parentTag)
+{
+   var tag = document.createElement(type);
+   tag.className = className;
+   parentTag.appendChild(tag);
+   return tag
+}
 
 // ------------ Cart -----------------
 
