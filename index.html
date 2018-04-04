@@ -20,11 +20,58 @@
     }
     </style>
     <script>
-            function updateCart() {
+        var subTotal = 0;
+        var discount = 0;
+        var grandTotal = 0;
+
+        function updateSubTotal(value)
+        {
+            subTotal = value;
+            subTotalObj.innerHTML = subTotal.toFixed(2);
+            updateGrandTotal();
+
+        }
+
+        function updateDiscount(percent)
+        {
+            discount = subTotal * (percent/100);
+            discountObj.innerHTML = discount.toFixed(2);
+            updateGrandTotal();
+        }
+
+        function updateGrandTotal()
+        {
+            grandTotal = subTotal - discount;
+            grandTotalObj.innerHTML = grandTotal.toFixed(2);
+        }
+
+        function handleCouponBox()
+        {
+            couponDiscount = getCouponDiscount(couponBox.value);
+            if (couponBox.value == '')
+            {
+                couponTxt.innerHTML = '';
+            }
+            else if (couponDiscount == 0)
+            {
+                couponTxt.innerHTML = 'Invalid coupon code';
+                updateDiscount(0);
+            }
+            else
+            {
+
+                couponTxt.innerHTML = 'Valid coupon: ' + couponDiscount + "% off";
+                updateDiscount(couponDiscount);
+            }
+
+        }
+
+        function updateCart()
+        {
             var cartTable = document.getElementById('cartTable');
             var cartDiv = document.getElementById('cart');
             cartDiv.innerHTML = '';
-            subTotal = 0;
+            newSubTotal = 0;
 
             if (cart.length > 0)
             {
@@ -45,7 +92,7 @@
                 var closeBtn = createHTMLTag('button', 'close', close);
 
                 var gameDetails = getGameById(cart[i]);
-                subTotal += parseFloat(gameDetails.price.toFixed(2));
+                newSubTotal += parseFloat(gameDetails.price.toFixed(2));
 
                 heading.innerHTML = (i+1);
                 title.innerHTML = gameDetails.title;
@@ -57,8 +104,8 @@
                     updateCart();
                 };
             }
-            var subTotalObj = document.getElementById('subtotal');
-            subTotalObj.innerHTML = subTotal.toFixed(2);
+
+            updateSubTotal(newSubTotal);
         }
     </script>
 
@@ -95,7 +142,8 @@
                 <table class="table">
                   <thead>
                     <tr>
-                      <th scope="col">Title<th>
+
+                      <th scope="col">Title<th>Txt
                       <th scope="col">Price</th>
                       <th scope="col"></th>
                     </tr>
@@ -126,41 +174,16 @@
 
     <script>
         var container = document.getElementById("container");
-        var subTotal = 0;
-        var discount = 0;
-        var grandTotal = 0;
-        
-        updateCart();
-        
         var couponBox = document.getElementById('coupon');
         var couponTxt = document.getElementById('couponTxt');
-        var discountTxt = document.getElementById('discountTxt');
-        var grandtotalTxt = document.getElementById('grandtotalTxt');
+        var discountObj = document.getElementById('discountTxt');
+        var grandTotalObj = document.getElementById('grandTotalTxt');
+        var subTotalObj = document.getElementById('subtotal');
 
-        couponBox.addEventListener("keyup", function() {
-            couponDiscount = getCouponDiscount(couponBox.value);
-            if (couponBox.value == '')
-            {
-                couponTxt.innerHTML = '';
-            }
-            else if (couponDiscount == 0)
-            {
-                couponTxt.innerHTML = 'Invalid coupon code';
-                discount = 0;
-                grandTotal = 0;
-                discountTxt.innerHTML = 0.00;
-                grandTotalTxt.innerHTML = 0.00;
-            }
-            else
-            {
-                couponTxt.innerHTML = 'Valid coupon: ' + couponDiscount + "% off";
-                discount = subTotal * (couponDiscount/100);
-                discountTxt.innerHTML = discount.toFixed(2);
-                grandTotal = subTotal - discount;
-                grandTotalTxt.innerHTML = grandTotal.toFixed(2);
-            }
-        });
+        couponBox.addEventListener("keyup", handleCouponBox, false);
 
+        updateCart();
+        handleCouponBox();
 
         for (i=0; i < games.length; i++)
         {
