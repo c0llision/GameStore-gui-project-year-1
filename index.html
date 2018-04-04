@@ -22,14 +22,17 @@
     <script>
         var subTotal = 0;
         var discount = 0;
-        var grandTotal = 0;
+
+        function getGrandTotal()
+        {
+            return subTotal - discount;
+        }
 
         function updateSubTotal(value)
         {
             subTotal = value;
             subTotalObj.innerHTML = subTotal.toFixed(2);
-            updateGrandTotal();
-
+            handleCouponBox();
         }
 
         function updateDiscount(percent)
@@ -41,8 +44,7 @@
 
         function updateGrandTotal()
         {
-            grandTotal = subTotal - discount;
-            grandTotalObj.innerHTML = grandTotal.toFixed(2);
+            grandTotalObj.innerHTML = getGrandTotal().toFixed(2);
         }
 
         function handleCouponBox()
@@ -59,7 +61,6 @@
             }
             else
             {
-
                 couponTxt.innerHTML = 'Valid coupon: ' + couponDiscount + "% off";
                 updateDiscount(couponDiscount);
             }
