@@ -117,6 +117,8 @@ function showRegisterScreen()
 function doLogin(username)
 {
     localStorage.setItem("LoggedInUser", username);
+    welcomeMsg.classList.remove('invisible');
+    usernameMsg.innerHTML = username;
 }
 
 function displayRegisterError(message)

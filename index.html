@@ -19,7 +19,7 @@
     <!-- Main menu -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" href="#">GameStore</a>
-        <ul class="navbar-nav">
+        <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
             <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
           </li>
@@ -33,6 +33,9 @@
             <a class="nav-link" href="#">Link</a>
           </li>
         </ul>
+        <span id="welcomeMsg" class="navbar-text text-white invisible">
+        Hello, <span id="usernameMsg">$username</span>!
+        </span>
     </nav>
     <br>
 
@@ -174,6 +177,8 @@
         var grandTotalMsg = document.getElementById('grandTotalMsg');
         var subTotalMsg = document.getElementById('subTotalMsg');
         var menuLogin = document.getElementById('menuLogin');
+        var welcomeMsg = document.getElementById('welcomeMsg');
+        var usernameMsg = document.getElementById('usernameMsg');
 
         // Login popup elements
         var loginUsernameInput = document.getElementById('loginUsernameInput');
