@@ -44,6 +44,7 @@ function handleCouponBox()
     if (couponInput.value == '')
     {
         couponMsg.innerHTML = '';
+        updateDiscount(0);
     }
     else if (couponDiscount == 0)
     {
@@ -55,7 +56,6 @@ function handleCouponBox()
         couponMsg.innerHTML = 'Valid coupon: ' + couponDiscount + "% off";
         updateDiscount(couponDiscount);
     }
-
 }
 
 function updateCart()
