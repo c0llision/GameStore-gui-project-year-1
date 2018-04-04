@@ -11,6 +11,7 @@
     <script src="js/main.js"></script>
     <script src="js/cart.js"></script>
     <script src="js/coupon.js"></script>
+    <script src="js/index.js"></script>
     <link rel="stylesheet" href="css/main.js">
 
     <style>
@@ -19,95 +20,6 @@
         height: auto;
     }
     </style>
-    <script>
-        var subTotal = 0;
-        var discount = 0;
-
-        function getGrandTotal()
-        {
-            return subTotal - discount;
-        }
-
-        function updateSubTotal(value)
-        {
-            subTotal = value;
-            subTotalObj.innerHTML = subTotal.toFixed(2);
-            handleCouponBox();
-        }
-
-        function updateDiscount(percent)
-        {
-            discount = subTotal * (percent/100);
-            discountObj.innerHTML = discount.toFixed(2);
-            updateGrandTotal();
-        }
-
-        function updateGrandTotal()
-        {
-            grandTotalObj.innerHTML = getGrandTotal().toFixed(2);
-        }
-
-        function handleCouponBox()
-        {
-            couponDiscount = getCouponDiscount(couponBox.value);
-            if (couponBox.value == '')
-            {
-                couponTxt.innerHTML = '';
-            }
-            else if (couponDiscount == 0)
-            {
-                couponTxt.innerHTML = 'Invalid coupon code';
-                updateDiscount(0);
-            }
-            else
-            {
-                couponTxt.innerHTML = 'Valid coupon: ' + couponDiscount + "% off";
-                updateDiscount(couponDiscount);
-            }
-
-        }
-
-        function updateCart()
-        {
-            var cartTable = document.getElementById('cartTable');
-            var cartDiv = document.getElementById('cart');
-            cartDiv.innerHTML = '';
-            newSubTotal = 0;
-
-            if (cart.length > 0)
-            {
-                cartTable.style="visibility:visible;";
-            }
-            else
-            {
-                cartTable.style="visibility:hidden;";
-            }
-
-            for (var i=0; i < cart.length; i++)
-            {
-                var row = createHTMLTag('tr','',cartDiv);
-                var heading = createHTMLTag('th','', row);
-                var title = createHTMLTag('td','',row);
-                var price = createHTMLTag('td','',row);
-                var close = createHTMLTag('td','',row);
-                var closeBtn = createHTMLTag('button', 'close', close);
-
-                var gameDetails = getGameById(cart[i]);
-                newSubTotal += parseFloat(gameDetails.price.toFixed(2));
-
-                heading.innerHTML = (i+1);
-                title.innerHTML = gameDetails.title;
-                price.innerHTML = gameDetails.price;
-                closeBtn.innerHTML = 'x';
-                closeBtn.id = i;
-                closeBtn.addEventListener("click", function() {
-                    removeFromCart(this.id);
-                    updateCart();
-                });
-            }
-            updateSubTotal(newSubTotal);
-        }
-    </script>
 
     <title>GameStore - Homepage</title>
   </head>
