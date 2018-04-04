@@ -72,9 +72,15 @@
 
     Username: <input id="usernameInput" type="text"><br>
     Password: <input id="passwordInput" type="password"><br>
-    <button onclick="login();">Sign in</button>
-    <button onclick="register();">New account</button>
+    <button id="login">Sign in</button>
+    <button id="register">New account</button>
     <p id="loginMsg"></p>
+
+    <script>
+        document.getElementById("login").addEventListener("click", login)
+        document.getElementById("register").addEventListener("click", register)
+    </script>
+    
 </body>
 </html>
 

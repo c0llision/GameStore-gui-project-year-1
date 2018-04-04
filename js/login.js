@@ -39,3 +39,33 @@ function getLoggedInUser() {
         return localStorage.getItem("LoggedInUser");
     }
 }
+
+//event listeners
+//login
+    document.getElementById("login").addEventListener("click", function(){
+        getUserAndPass();
+
+        if(!isUsernameTaken(username))
+        {
+            showLoginMsg(false, "Username does not exist!");
+            return false;
+        }
+
+        if(!checkPassword(username, password))
+        {
+            showLoginMsg(false, "Password is incorrect!");
+            return false;
+        }
+
+        localStorage.setItem("LoggedInUser", username);
+        showLoginMsg(true, "Successfully logged in!");
+        return true;
+    }); 
+
+    //register
+        //document.getElementById("login").addEventListener("click", function(){  
+
+
+
+
+          //}); 
