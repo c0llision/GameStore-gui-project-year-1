@@ -15,37 +15,37 @@ function getGrandTotal()
 function updateSubTotal(value)
 {
     subTotal = value;
-    subTotalObj.innerHTML = subTotal.toFixed(2);
+    subTotalMsg.innerHTML = subTotal.toFixed(2);
     handleCouponBox();
 }
 
 function updateDiscount(percent)
 {
     discount = subTotal * (percent/100);
-    discountObj.innerHTML = discount.toFixed(2);
+    discountMsg.innerHTML = discount.toFixed(2);
     updateGrandTotal();
 }
 
 function updateGrandTotal()
 {
-    grandTotalObj.innerHTML = getGrandTotal().toFixed(2);
+    grandTotalMsg.innerHTML = getGrandTotal().toFixed(2);
 }
 
 function handleCouponBox()
 {
-    couponDiscount = getCouponDiscount(couponBox.value);
-    if (couponBox.value == '')
+    couponDiscount = getCouponDiscount(couponInput.value);
+    if (couponInput.value == '')
     {
-        couponTxt.innerHTML = '';
+        couponMsg.innerHTML = '';
     }
     else if (couponDiscount == 0)
     {
-        couponTxt.innerHTML = 'Invalid coupon code';
+        couponMsg.innerHTML = 'Invalid coupon code';
         updateDiscount(0);
     }
     else
     {
-        couponTxt.innerHTML = 'Valid coupon: ' + couponDiscount + "% off";
+        couponMsg.innerHTML = 'Valid coupon: ' + couponDiscount + "% off";
         updateDiscount(couponDiscount);
     }
 
@@ -60,11 +60,11 @@ function updateCart()
 
     if (cart.length > 0)
     {
-        cartTable.style="visibility:visible;";
+        cartTable.classList.remove('invisible');
     }
     else
     {
-        cartTable.style="visibility:hidden;";
+        cartTable.classList.add('invisible');
     }
 
     for (var i=0; i < cart.length; i++)
@@ -90,6 +90,7 @@ function updateCart()
         });
     }
     updateSubTotal(newSubTotal);
+    handleCouponBox();
 }
 
 // --- login/register ----
@@ -113,13 +114,13 @@ function doLogin(username)
 
 function displayRegisterError(message)
 {
-   registerInvalidMsgbox.style="display:block;"; 
+   registerInvalidMsgbox.classList.remove("d-none");
    registerInvalidMsg.innerHTML = message;
 }
 
 function displayLoginError(message)
 {
-   loginInvalidMsgbox.style="display:block;"; 
+   loginInvalidMsgbox.classList.remove("d-none");
    loginInvalidMsg.innerHTML = message;
 }
 

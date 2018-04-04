@@ -15,13 +15,6 @@
     <script src="js/login.js"></script>
     <link rel="stylesheet" href="css/main.js">
 
-    <style>
-    .itemImg {
-        max-width: 100%;
-        height: auto;
-    }
-    </style>
-
     <title>GameStore - Homepage</title>
   </head>
   <body>
@@ -57,7 +50,7 @@
             </button>
           </div>
           <div id="modal-login" class="modal-body">
-            <div class="alert alert-warning" id="loginInvalidMsgbox" style="display:none;">
+            <div class="alert alert-warning d-none" id="loginInvalidMsgbox">
                   <strong>Invalid Login!</strong> <span id="loginInvalidMsg">Username or password invalid</span>
             </div>
             <table>
@@ -92,7 +85,7 @@
             </button>
           </div>
           <div id="modal-register" class="modal-body">
-            <div class="alert alert-warning" id="registerInvalidMsgbox" style="display:none;">
+            <div class="alert alert-warning d-none" id="registerInvalidMsgbox">
                   <strong>Unable to register!</strong> <span id="registerInvalidMsg">Username or password invalid</span>
             </div>
             <table>
@@ -127,7 +120,7 @@
         </div>
         <div class="col-lg-3" style="border-left: 1px dotted black;">
             <h2>Shopping Cart</h2>
-            <div id="cartTable" style="visibility:hidden;">
+            <div id="cartTable" class="invisible">
                 <table class="table">
                   <thead>
                     <tr>
@@ -146,15 +139,15 @@
                     </tr>
                   </tbody>
                 </table>
-                <b>Sub total: </b> <span id="subtotal">0.00</span>
+                <b>Sub total: </b> <span id="subTotalMsg">0.00</span>
                 <br><br>
-                Coupon code: <input type="text" id="coupon">
+                Coupon code: <input type="text" id="couponInput">
                 <br>
-                <span id="couponTxt"></span>
+                <span id="couponMsg"></span>
                 <br><br>
-                <b>Discount: </b> <span id="discountTxt">0.00</span>
+                <b>Discount: </b> <span id="discountMsg">0.00</span>
                 <br><br>
-                <b>Grand Total: </b> <span id="grandTotalTxt">0.00</span>
+                <b>Grand Total: </b> <span id="grandTotalMsg">0.00</span>
             </div>
         </div>
       </div>
@@ -162,18 +155,44 @@
 
 
     <script>
+        // Page elements
         var container = document.getElementById("container");
-        var couponBox = document.getElementById('coupon');
-        var couponTxt = document.getElementById('couponTxt');
-        var discountObj = document.getElementById('discountTxt');
-        var grandTotalObj = document.getElementById('grandTotalTxt');
-        var subTotalObj = document.getElementById('subtotal');
+        var couponInput = document.getElementById('couponInput');
+        var couponMsg = document.getElementById('couponMsg');
+        var discountMsg = document.getElementById('discountMsg');
+        var grandTotalMsg = document.getElementById('grandTotalMsg');
+        var subTotalMsg = document.getElementById('subTotalMsg');
+        var menuLogin = document.getElementById('menuLogin');
 
-        couponBox.addEventListener("keyup", handleCouponBox, false);
+        // Login popup elements
+        var loginUsernameInput = document.getElementById('loginUsernameInput');
+        var loginPasswordInput = document.getElementById('loginPasswordInput');
+        var loginInvalidMsgbox = document.getElementById('loginInvalidMsgbox');
+        var loginInvalidMsg = document.getElementById('loginInvalidMsg');
+        var loginRegisterLink = document.getElementById('loginRegisterLink');
+        var loginSubmitBtn = document.getElementById('loginSubmitBtn');
 
+        // Register popup elements
+        var registerUsernameInput = document.getElementById('registerUsernameInput');
+        var registerPasswordInput = document.getElementById('registerPasswordInput');
+        var registerPasswordInput2 = document.getElementById('registerPasswordInput2');
+        var registerInvalidMsgbox = document.getElementById('registerInvalidMsgbox');
+        var registerInvalidMsg = document.getElementById('registerInvalidMsg');
+        var registerLoginLink = document.getElementById('registerLoginLink');
+        var registerSubmitBtn = document.getElementById('registerSubmitBtn');
+
+        // Read cart contents from localStorage and update totals
         updateCart();
-        handleCouponBox();
 
+        // Event handlers
+        couponInput.addEventListener("keyup", handleCouponBox, false);
+        menuLogin.addEventListener("click", showLoginScreen);
+        registerLoginLink.addEventListener("click", showLoginScreen);
+        loginRegisterLink.addEventListener("click", showRegisterScreen);
+        loginSubmitBtn.addEventListener("click", handleLogin);
+        registerSubmitBtn.addEventListener("click", handleRegister);
+
+        // Display products
         for (i=0; i < games.length; i++)
         {
             if (i % 3 == 0)
@@ -185,16 +204,16 @@
             var title = createHTMLTag('div', 'h6', col);
             var img = createHTMLTag('img', 'itemImg', col);
             var priceTag = createHTMLTag('p', 'priceTag', col);
-            var addBtn = createHTMLTag('button', 'btn btn-primary', col);
-
-            game = games[i];
+            var addToCartBtn = createHTMLTag('button', 'btn btn-primary', col);
+            var game = games[i];
 
             title.innerHTML = game.title;
             img.src = game.image;
             priceTag.innerHTML = "Price: " + game.price;
-            addBtn.innerHTML = "Add To Cart";
-            addBtn.id = game.id;
-            addBtn.addEventListener("click", function() {
+            addToCartBtn.innerHTML = "Add To Cart";
+            addToCartBtn.id = game.id;
+
+            addToCartBtn.addEventListener("click", function() {
                 if (!isGameInCart(this.id))
                 {
                     addToCart(this.id);
@@ -207,35 +226,8 @@
             });
         }
     </script>
-    <script>
-        var menuLogin = document.getElementById('menuLogin');
 
-        var loginUsernameInput = document.getElementById('loginUsernameInput');
-        var loginPasswordInput = document.getElementById('loginPasswordInput');
-        var loginInvalidMsgbox = document.getElementById('loginInvalidMsgbox');
-        var loginInvalidMsg = document.getElementById('loginInvalidMsg');
-        var loginRegisterLink = document.getElementById('loginRegisterLink');
-        var loginSubmitBtn = document.getElementById('loginSubmitBtn');
-
-        var registerUsernameInput = document.getElementById('registerUsernameInput');
-        var registerPasswordInput = document.getElementById('registerPasswordInput');
-        var registerPasswordInput2 = document.getElementById('registerPasswordInput2');
-        var registerInvalidMsgbox = document.getElementById('registerInvalidMsgbox');
-        var registerInvalidMsg = document.getElementById('registerInvalidMsg');
-        var registerLoginLink = document.getElementById('registerLoginLink');
-        var registerSubmitBtn = document.getElementById('registerSubmitBtn');
-
-
-
-        menuLogin.addEventListener("click", showLoginScreen);
-        registerLoginLink.addEventListener("click", showLoginScreen);
-        loginRegisterLink.addEventListener("click", showRegisterScreen);
-        loginSubmitBtn.addEventListener("click", handleLogin);
-        registerSubmitBtn.addEventListener("click", handleRegister);
-    </script>
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- Bootstrap Javascript -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
