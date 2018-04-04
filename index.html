@@ -123,7 +123,7 @@
                   <thead>
                     <tr>
 
-                      <th scope="col">Title<th>Txt
+                      <th scope="col">Title<th>
                       <th scope="col">Price</th>
                       <th scope="col"></th>
                     </tr>
@@ -137,15 +137,28 @@
                     </tr>
                   </tbody>
                 </table>
-                <b>Sub total: </b> <span id="subTotalMsg">0.00</span>
-                <br><br>
-                Coupon code: <input type="text" id="couponInput">
-                <br>
-                <span id="couponMsg"></span>
-                <br><br>
-                <b>Discount: </b> <span id="discountMsg">0.00</span>
-                <br><br>
-                <b>Grand Total: </b> <span id="grandTotalMsg">0.00</span>
+                <table width="100%">
+                    <tr>
+                        <td><strong>Sub total:</strong></td>
+                        <td class="text-right"><span id="subTotalMsg">0.00</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Coupon:</td>
+                        <td class="text-right"><input type="text" id="couponInput" class="input-sm"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="text-right"><span id="couponMsg"></span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Discount:</strong></td>
+                        <td class="text-right"><span id="discountMsg">0.00</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Grand Total:</strong></td>
+                        <td class="text-right"><span id="grandTotalMsg">0.00</span></td>
+                    </tr>
+                </table>
             </div>
         </div>
       </div>
