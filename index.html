@@ -12,6 +12,7 @@
     <script src="js/cart.js"></script>
     <script src="js/coupon.js"></script>
     <script src="js/index.js"></script>
+    <script src="js/login.js"></script>
     <link rel="stylesheet" href="css/main.js">
 
     <style>
@@ -25,6 +26,7 @@
   </head>
   <body>
 
+    <!-- Main menu -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" href="#">GameStore</a>
         <ul class="navbar-nav">
@@ -32,7 +34,7 @@
             <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
+            <a class="nav-link" href="#" id="menuLogin">Login</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Link</a>
@@ -44,6 +46,81 @@
     </nav>
     <br>
 
+    <!-- Login Popup -->
+    <div class="modal fade" id="loginScreen" role="dialog" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Login</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div id="modal-login" class="modal-body">
+            <div class="alert alert-warning" id="loginInvalidMsgbox" style="display:none;">
+                  <strong>Invalid Login!</strong> <span id="loginInvalidMsg">Username or password invalid</span>
+            </div>
+            <table>
+                <tr>
+                    <td>Username:</td>
+                    <td><input id="loginUsernameInput" type="text"></td>
+                </tr>
+                <tr>
+                    <td>Password:</td>
+                    <td><input id="loginPasswordInput" type="password"></td>
+                </tr>
+             </table>
+             <a href="#" id="loginRegisterLink">Create a new account</a>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" id="loginSubmitBtn" class="btn btn-primary">Login</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Registration Popup -->
+    <div class="modal fade" id="registerScreen" role="dialog" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Create an Account</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div id="modal-register" class="modal-body">
+            <div class="alert alert-warning" id="registerInvalidMsgbox" style="display:none;">
+                  <strong>Unable to register!</strong> <span id="registerInvalidMsg">Username or password invalid</span>
+            </div>
+            <table>
+                <tr>
+                    <td>Choose your Username:</td>
+                    <td><input id="registerUsernameInput" type="text"></td>
+                </tr>
+                <tr>
+                <tr>
+                    <td>Password:</td>
+                    <td><input id="registerPasswordInput" type="password"></td>
+                </tr>
+                    <td>Confirm Password:</td>
+                    <td><input id="registerPasswordInput2" type="password"></td>
+                </tr>
+             </table>
+             <a href="#" id="registerLoginLink">Login to an existing account</a>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" id="registerSubmitBtn" class="btn btn-primary">Register</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Shopping Cart  -->
     <div class="container-fluid">
       <div class="row">
         <div class="col-lg-9" id="container">
@@ -129,6 +206,32 @@
                 }
             });
         }
+    </script>
+    <script>
+        var menuLogin = document.getElementById('menuLogin');
+
+        var loginUsernameInput = document.getElementById('loginUsernameInput');
+        var loginPasswordInput = document.getElementById('loginPasswordInput');
+        var loginInvalidMsgbox = document.getElementById('loginInvalidMsgbox');
+        var loginInvalidMsg = document.getElementById('loginInvalidMsg');
+        var loginRegisterLink = document.getElementById('loginRegisterLink');
+        var loginSubmitBtn = document.getElementById('loginSubmitBtn');
+
+        var registerUsernameInput = document.getElementById('registerUsernameInput');
+        var registerPasswordInput = document.getElementById('registerPasswordInput');
+        var registerPasswordInput2 = document.getElementById('registerPasswordInput2');
+        var registerInvalidMsgbox = document.getElementById('registerInvalidMsgbox');
+        var registerInvalidMsg = document.getElementById('registerInvalidMsg');
+        var registerLoginLink = document.getElementById('registerLoginLink');
+        var registerSubmitBtn = document.getElementById('registerSubmitBtn');
+
+
+
+        menuLogin.addEventListener("click", showLoginScreen);
+        registerLoginLink.addEventListener("click", showLoginScreen);
+        loginRegisterLink.addEventListener("click", showRegisterScreen);
+        loginSubmitBtn.addEventListener("click", handleLogin);
+        registerSubmitBtn.addEventListener("click", handleRegister);
     </script>
 
     <!-- Optional JavaScript -->
