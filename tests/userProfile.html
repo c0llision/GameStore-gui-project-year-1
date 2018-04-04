@@ -18,50 +18,44 @@
             [109, "Football Manager 2018"]
         ];
         
-        //temp userList
-        var userList = [];
-        var users= []
+        var users = []
         var logedUserIndex;
         var currentUserID = 0;
        
-          for (var i = 0; i < localStorage.length; i++)
+        for (var i = 0; i < localStorage.length; i++)
         {
-
-                //add to userList array, if begins with "user-"
-                if (localStorage.key(i).includes("user-"))
-                {
-                    var username = (localStorage.key(i)).substring(5);
-                    userList[currentUserID] = [currentUserID++, username, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-                }
+            //add to userList array, if begins with "user-"
+            if (localStorage.key(i).includes("user-"))
+            {
+                var username = (localStorage.key(i)).substring(5);
+                users[currentUserID++] = new User_Profile(username);
+            }
         } 
-        //find user index - setting to local storage, not sure if I
+        //finds loged in userIndex
         function userSearch()
         {
-            for (var i = 0; i < userList.length; i++)
+            for (var i = 0; i < users.length; i++)
             {
-                //I think this works, not sure how to test it rn
                 alert(localStorage.getItem("LoggedInUser"))
-                if (userList[i][1] == localStorage.getItem("LoggedInUser"))
+                if (users[i].username == localStorage.getItem("LoggedInUser"))
                 {
-                     logedUserIndex = userList[i][0];
-                    // alert(logedUserIndex);
+                     logedUserIndex = users[i].userID;
+                     return users[i].toString();
                 }
             }
         }
-        userSearch();
 
-        //assigning saved users
-        for (i=0; i < userList.length; i++)
-        {      //will need to be modified to allow for new user
-            users[i] = new User_Profile(userList[0][0], userList[0][1]);
-        }
+
+
+
+
 
     </script>
   </head>
   <body>
     <h1>Shopping cart tests</h1>
-    <p><i>This looks like an account profile page, object code might be useable elsewhere. Unsure how to implement user account creation.</body>i></p>
-        <p id="objTest1"><script>document.getElementById("objTest1").innerHTML = users[logedUserIndex].toString();</script></p>
+    <p><i>This looks like an account profile page, object code might be useable elsewhere. Unsure how to implement user account creation.</p>
+        <p id="objTest1"><script>document.getElementById("objTest1").innerHTML = userSearch();</script></p>
         <p id="userCheckList"><script> </script></p>
         <input id="checkBox00" type="checkbox">PUBG
         </br><input id="checkBox01" type="checkbox">Farcry 5

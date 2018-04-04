@@ -1,15 +1,12 @@
-        function User_Profile(id, username)
+        id = 0
+        function User_Profile(username)
         {
+
             this.username = username;
             //unique ID is given, set to index [?][0]
-            this.userID = id;
+            this.userID = id++;
             //This will make further purchasing of this item impossible
-            this.library = [ //0, 1, 1, 0, 0, 0, 1, 0, 0, 1
-                userList[logedUserIndex][2], userList[logedUserIndex][3], userList[logedUserIndex][4],
-                userList[logedUserIndex][5], userList[logedUserIndex][6], userList[logedUserIndex][7],
-                userList[logedUserIndex][8], userList[logedUserIndex][9], userList[logedUserIndex][10],
-                userList[logedUserIndex][11]
-            ];
+            this.library = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ];
 
             //update library method, I think depends on how the UI appears, a check list would be simplest 
             this.updateLibrary = function(){
