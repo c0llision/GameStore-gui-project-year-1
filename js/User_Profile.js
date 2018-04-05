@@ -3,55 +3,39 @@
         {
 
             this.username = username;
-            //unique ID is given, set to index [?][0]
+            //ID is required for updating correct user with button
             this.userID = id++;
-            //This will make further purchasing of this item impossible
+
             this.library = [];
 
-            //update library method, I think depends on how the UI appears, a check list would be simplest 
             this.updateLibrary = function(){
-               
-
-                for (var i = 0; i < gameList.length; i++)
+            for (var i = 0; i < gameList.length; i++)
+            {
+                var checkBox = document.getElementById("checkBox0" + i);
+                
+                if
+                (checkBox.checked == true)
                 {
-                    var checkBox = document.getElementById("checkBox0" + i);
-                    
-                    if
-                    (checkBox.checked == true)
+                    if (!(this.library.includes(gameList[i][0])))
                     {
-                        if (!(this.library.includes(gameList[i][0])))
-                        {
-                            this.library.push(gameList[i][0]);
-                        }
-                    }
-                    else
-                    {
-                        if (this.library.includes(gameList[i][0]))
-                        {
-                            var index = this.library.indexOf(gameList[i][0]);
-                            this.library.splice(index, 1)
-                        }
+                        this.library.push(gameList[i][0]);
                     }
                 }
-                localStorage.setItem("library-" + this.username, JSON.stringify(this.library));
-
-                document.getElementById("objTest1").innerHTML = this.toString();
-            }
-
-            this.libraryToString = function()
-            {
-                for (var i = 0; i < this.library.length; i++)
+                else
                 {
-                    if (this.library[i] == 1)
+                    if (this.library.includes(gameList[i][0]))
                     {
-                        document.getElementById("checkBox0" + i).checked = true; 
+                        var index = this.library.indexOf(gameList[i][0]);
+                        this.library.splice(index, 1)
                     }
-                    else
-                    {
-                        document.getElementById("checkBox0" + i).checked = false;
-                    }
-                }//for
+                }
             }
+            localStorage.setItem("library-" + this.username, JSON.stringify(this.library));
+
+            document.getElementById("objTest1").innerHTML = this.toString();
+        }
+
+
 
             this.toString = function(){
                 var str = "Username: " + this.username + "</br>Games in library:</br>";

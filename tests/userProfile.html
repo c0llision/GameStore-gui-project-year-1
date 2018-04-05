@@ -46,9 +46,32 @@
 
         localStorage.setItem("test", [0, 1, 0]);
 
+        function loggedUserIndex(){
+            for (var i = 0; i < users.length; i++){
+                if (users[i].username == localStorage.getItem("LoggedInUser")){
+                    return i;
+                }
+            }
+        }
 
+        function updateCheckBox(){
+            
+            //sets all checkboxes to false
+            for (var i = 0; i < gameList.length; i++)
+            {
+               document.getElementById("checkBox0" + i).checked = false;
+            }
 
-
+            for (var j = 0; j < users[loggedUserIndex()].library.length; j++)
+            {
+                for (var i = 0; i < gameList.length; i++)
+                { 
+                    if (users[loggedUserIndex()].library[j] == gameList[i][0]){
+                        document.getElementById("checkBox0" + i).checked = true;
+                    }
+                }
+            }
+        }
 
     </script>
   </head>
@@ -68,7 +91,7 @@
         </br><input id="checkBox08" type="checkbox">Counter-Strike 
         </br><input id="checkBox09" type="checkbox">Football Manager 2018 
        <!-- Problem with how this button calls the method, variables are out of scope I think if not created inside constructor -->
-        <script>users[0].libraryToString()</script>
+        <script> updateCheckBox()</script>
         </br><button onclick="users[logedUserIndex].updateLibrary()">Update</button>
 
 </body>
