@@ -200,6 +200,12 @@
         // Read cart contents from localStorage and update totals
         updateCart();
 
+        // Check if already logged in
+        if (getLoggedInUser())
+        {
+            doLogin(getLoggedInUser())
+        }
+
         // Event handlers
         couponInput.addEventListener("keyup", handleCouponBox, false);
         menuLogin.addEventListener("click", showLoginScreen);
