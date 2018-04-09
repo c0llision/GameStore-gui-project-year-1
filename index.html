@@ -11,6 +11,7 @@
     <script src="js/game.js"></script>
     <script src="js/cart.js"></script>
     <script src="js/coupon.js"></script>
+    <script src="js/library.js"></script>
     <script src="js/index.js"></script>
     <script src="js/login.js"></script>
   </head>
@@ -116,6 +117,14 @@
 
     <!-- Shopping Cart  -->
     <div class="container-fluid">
+
+      <!-- message box -->
+      <div class="alert alert-info" id="alertBox" style="display:none;">
+        <a href="#" class="close" onclick="$('#alertBox').hide()">&times;</a>
+        <span id="alertMessage">
+        <strong>Success!</strong> This alert box could indicate a successful or positive action.</span>
+      </div>
+
       <div class="row">
         <div class="col-lg-9" id="container">
         </div>
@@ -125,7 +134,6 @@
                 <table class="table">
                   <thead>
                     <tr>
-
                       <th scope="col">Title<th>
                       <th scope="col">Price</th>
                       <th scope="col"></th>
@@ -162,6 +170,7 @@
                         <td class="text-right"><span id="grandTotalMsg">0.00</span></td>
                     </tr>
                 </table>
+                <button class="btn btn-primary" id="checkoutBtn">Checkout</button>
             </div>
         </div>
       </div>
@@ -179,6 +188,9 @@
         var menuLogin = document.getElementById('menuLogin');
         var welcomeMsg = document.getElementById('welcomeMsg');
         var usernameMsg = document.getElementById('usernameMsg');
+        var checkoutBtn = document.getElementById('checkoutBtn');
+        var alertBox = document.getElementById('alertBox');
+        var alertMessage = document.getElementById('alertMessage');
 
         // Login popup elements
         var loginUsernameInput = document.getElementById('loginUsernameInput');
@@ -213,40 +225,10 @@
         loginRegisterLink.addEventListener("click", showRegisterScreen);
         loginSubmitBtn.addEventListener("click", handleLogin);
         registerSubmitBtn.addEventListener("click", handleRegister);
+        checkoutBtn.addEventListener("click", doCheckout);
 
         // Display products
-        for (i=0; i < games.length; i++)
-        {
-            if (i % 3 == 0)
-            {
-              var row = createHTMLTag('div', 'row', container);
-            }
-
-            var col = createHTMLTag('div', 'col-md-4', row);
-            var title = createHTMLTag('div', 'h6', col);
-            var img = createHTMLTag('img', 'itemImg', col);
-            var priceTag = createHTMLTag('p', 'priceTag', col);
-            var addToCartBtn = createHTMLTag('button', 'btn btn-primary', col);
-            var game = games[i];
-
-            title.innerHTML = game.title;
-            img.src = game.image;
-            priceTag.innerHTML = "Price: " + game.price;
-            addToCartBtn.innerHTML = "Add To Cart";
-            addToCartBtn.id = game.id;
-
-            addToCartBtn.addEventListener("click", function() {
-                if (!isGameInCart(this.id))
-                {
-                    addToCart(this.id);
-                    updateCart();
-                }
-                else
-                {
-                    console.log('already in cart');
-                }
-            });
-        }
+        displayProducts();
     </script>
 
     <!-- Bootstrap Javascript -->

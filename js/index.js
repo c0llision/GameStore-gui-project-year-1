@@ -8,6 +8,70 @@ function createHTMLTag(type, className, parentTag)
    return tag
 }
 
+function showAlertMessage(message) {
+    alertBox.style="display:block;";
+    alertMessage.innerHTML = message;
+}
+
+function displayProducts() {
+    container.innerHTML = '';
+    for (var i=0; i < games.length; i++)
+    {
+        if (i % 3 == 0)
+        {
+          var row = createHTMLTag('div', 'row', container);
+        }
+
+        var col = createHTMLTag('div', 'col-md-4', row);
+        var title = createHTMLTag('div', 'h6', col);
+        var img = createHTMLTag('img', 'itemImg', col);
+        var priceTag = createHTMLTag('p', 'priceTag', col);
+        var addToCartBtn = createHTMLTag('button', 'btn btn-primary', col);
+        var game = games[i];
+
+        title.innerHTML = game.title;
+        img.src = game.image;
+        priceTag.innerHTML = "Price: " + game.price;
+        addToCartBtn.innerHTML = "Add To Cart";
+        addToCartBtn.id = game.id;
+
+        addToCartBtn.addEventListener("click", function() {
+            if (isGameInCart(this.id))
+            {
+                showAlertMessage("Game already in Cart");
+            }
+            else if (isGameInLibrary(this.id))
+            {
+                showAlertMessage("You've already purchased this game");
+            }
+            else
+            {
+                addToCart(this.id);
+                updateCart();
+            }
+        });
+    }
+}
+
+function displayLibrary() {
+    container.innerHTML = '';
+    for (i=0; i < library.length; i++)
+    {
+        if (i % 3 == 0)
+        {
+          var row = createHTMLTag('div', 'row', container);
+        }
+
+        var col = createHTMLTag('div', 'col-md-4', row);
+        var title = createHTMLTag('div', 'h6', col);
+        var img = createHTMLTag('img', 'itemImg', col);
+        var game = games[i];
+
+        title.innerHTML = game.title;
+        img.src = game.image;
+    }
+}
+
 // ------------ Cart -----------------
 
 
@@ -100,6 +164,29 @@ function updateCart()
     handleCouponBox();
 }
 
+function doCheckout()
+{
+    if (!getLoggedInUser())
+    {
+        showAlertMessage("You must be logged in to checkout.");
+        return false;
+    }
+
+    /*
+    for (i=0; i < cart.length; i++)
+    {
+        if (isGameInLibrary(cart[i]))
+        {
+           showAlertMessage("Cannot add to cart.");
+           return false;
+        }
+    }
+    */
+
+    addToLibrary(cart);
+    cart = [];
+    updateCart();
+}
 // --- login/register ----
 
 function showLoginScreen()
@@ -119,6 +206,7 @@ function doLogin(username)
     localStorage.setItem("LoggedInUser", username);
     welcomeMsg.classList.remove('invisible');
     usernameMsg.innerHTML = username;
+    loadLibrary();
 }
 
 function displayRegisterError(message)
