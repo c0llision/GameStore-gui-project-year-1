@@ -170,6 +170,7 @@ function updateCart()
     }
     updateSubTotal(newSubTotal);
     handleCouponBox();
+    saveCart();
 }
 
 function doCheckout()
