@@ -18,7 +18,8 @@ function checkPassword(username, password)
     }
 }
 
-function isUsernameTaken(username) {
+function isUsernameTaken(username)
+{
     if (localStorage.getItem("user-" + username) !== null)
     {
         return true;
@@ -29,7 +30,8 @@ function isUsernameTaken(username) {
     }
 }
 
-function getLoggedInUser() {
+function getLoggedInUser()
+{
     if (localStorage.getItem("LoggedInUser") === null)
     {
         return false;
@@ -38,4 +40,9 @@ function getLoggedInUser() {
     {
         return localStorage.getItem("LoggedInUser");
     }
+}
+
+function logout()
+{
+    localStorage.setItem("LoggedInUser", '');
 }

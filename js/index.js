@@ -27,6 +27,11 @@ function displayProducts() {
         var img = createHTMLTag('img', 'itemImg', col);
         var priceTag = createHTMLTag('p', 'priceTag', col);
         var addToCartBtn = createHTMLTag('button', 'btn btn-primary', col);
+
+        // hacky AF
+        var brTag = createHTMLTag('br', '', col);
+        var brTag = createHTMLTag('br', '', col);
+
         var game = games[i];
 
         title.innerHTML = game.title;
@@ -203,10 +208,23 @@ function showRegisterScreen()
 
 function doLogin(username)
 {
+    $('#menuLogin').addClass("d-none");
+    $('#menuLogout').removeClass("d-none");
+    $('#menuLibrary').removeClass("d-none");
     localStorage.setItem("LoggedInUser", username);
     welcomeMsg.classList.remove('invisible');
     usernameMsg.innerHTML = username;
     loadLibrary();
+}
+
+function doLogout()
+{
+    $('#menuLogin').removeClass("d-none");
+    $('#menuLogout').addClass("d-none");
+    $('#menuLibrary').addClass("d-none");
+    logout();
+    welcomeMsg.classList.add('invisible');
+    usernameMsg.innerHTML = '';
 }
 
 function displayRegisterError(message)
