@@ -60,7 +60,7 @@ function displayProducts() {
 
 function displayLibrary() {
     container.innerHTML = '';
-    for (i=0; i < library.length; i++)
+    for (var i=0; i < library.length; i++)
     {
         if (i % 3 == 0)
         {
@@ -70,7 +70,10 @@ function displayLibrary() {
         var col = createHTMLTag('div', 'col-md-4', row);
         var title = createHTMLTag('div', 'h6', col);
         var img = createHTMLTag('img', 'itemImg', col);
-        var game = games[i];
+
+        var gameId = library[i];
+
+        var game = getGameById(gameId);
 
         title.innerHTML = game.title;
         img.src = game.image;
