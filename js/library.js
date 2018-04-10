@@ -10,8 +10,8 @@ function addToLibrary(gameList)
         return false;
     }
 
-    library = gameList;
-    localStorage.setItem('library-' + username, JSON.stringify(gameList));
+    library = library.concat(gameList);
+    localStorage.setItem('library-' + username, JSON.stringify(library));
 }
 
 function loadLibrary()
