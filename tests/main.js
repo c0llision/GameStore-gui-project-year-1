@@ -133,7 +133,3 @@ eval(fs.readFileSync('js/library.js')+'');
     // #5
     test.runTest(library = [100, 200, 300]);
 
-    // intentionally broken test
-    test.runTest(false);
-
-
