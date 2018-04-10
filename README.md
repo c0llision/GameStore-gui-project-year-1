@@ -2,4 +2,4 @@
 
 ![preview](https://media.giphy.com/media/89h6mzkmcBU10ji8FA/giphy.gif)
 
-Year 1 GUI project by Marcus Walsh (@c0llision) and Eoin Wilkie (@eoinwilkie)
+Year 1 GUI project by Marcus Walsh ([@c0llision](https://github.com/c0llision)) and Eoin Wilkie ([@eoinwilkie](https://github.com/eoinwilkie))
