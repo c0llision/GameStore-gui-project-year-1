@@ -1,4 +1,4 @@
-# GameStore - SdPd Year 1 GUI project
+# GameStore - Year 1 GUI project
 
 [![Build Status](https://travis-ci.com/c0llision/gui_project_y1.svg?token=jKwFsqv8nstKt7PxSw1t&branch=master)](https://travis-ci.com/c0llision/gui_project_y1)
 
