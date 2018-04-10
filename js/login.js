@@ -42,6 +42,11 @@ function getLoggedInUser()
     }
 }
 
+function login(username)
+{
+    localStorage.setItem("LoggedInUser", username);
+}
+
 function logout()
 {
     localStorage.setItem("LoggedInUser", '');
