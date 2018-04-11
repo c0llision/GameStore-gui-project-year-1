@@ -8,11 +8,17 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="css/main.js">
 
+    <!-- Bootstrap Javascript -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script src="js/main.js"></script>
+    <script src="js/index_page.js"></script>
     <script src="js/game.js"></script>
     <script src="js/cart.js"></script>
     <script src="js/coupon.js"></script>
     <script src="js/library.js"></script>
-    <script src="js/index.js"></script>
     <script src="js/login.js"></script>
   </head>
   <body>
@@ -95,6 +101,18 @@
                     <td><input id="registerUsernameInput" type="text"></td>
                 </tr>
                 <tr>
+                    <td>Your name:</td>
+                    <td><input id="registerNameInput" type="text"></td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td><input id="registerEmailInput" type="email"></td>
+                </tr>
+                <tr>
+                    <td>Phone number:</td>
+                    <td><input id="registerPhoneInput" type="tel"></td>
+                </tr>
+                <tr>
                 <tr>
                     <td>Password:</td>
                     <td><input id="registerPasswordInput" type="password"></td>
@@ -175,73 +193,5 @@
         </div>
       </div>
     </div>
-
-
-    <!-- Bootstrap Javascript -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script>
-        // Page elements
-        $(document).ready(function () {
-            var container = document.getElementById("container");
-            var couponInput = document.getElementById('couponInput');
-            var couponMsg = document.getElementById('couponMsg');
-            var discountMsg = document.getElementById('discountMsg');
-            var grandTotalMsg = document.getElementById('grandTotalMsg');
-            var subTotalMsg = document.getElementById('subTotalMsg');
-            var menuLogin = document.getElementById('menuLogin');
-            var menuLogout = document.getElementById('menuLogout');
-            var welcomeMsg = document.getElementById('welcomeMsg');
-            var usernameMsg = document.getElementById('usernameMsg');
-            var checkoutBtn = document.getElementById('checkoutBtn');
-            var alertBox = document.getElementById('alertBox');
-            var alertMessage = document.getElementById('alertMessage');
-
-            // Login popup elements
-            var loginUsernameInput = document.getElementById('loginUsernameInput');
-            var loginPasswordInput = document.getElementById('loginPasswordInput');
-            var loginInvalidMsgbox = document.getElementById('loginInvalidMsgbox');
-            var loginInvalidMsg = document.getElementById('loginInvalidMsg');
-            var loginRegisterLink = document.getElementById('loginRegisterLink');
-            var loginSubmitBtn = document.getElementById('loginSubmitBtn');
-
-            // Register popup elements
-            var registerUsernameInput = document.getElementById('registerUsernameInput');
-            var registerPasswordInput = document.getElementById('registerPasswordInput');
-            var registerPasswordInput2 = document.getElementById('registerPasswordInput2');
-            var registerInvalidMsgbox = document.getElementById('registerInvalidMsgbox');
-            var registerInvalidMsg = document.getElementById('registerInvalidMsg');
-            var registerLoginLink = document.getElementById('registerLoginLink');
-            var registerSubmitBtn = document.getElementById('registerSubmitBtn');
-
-            // Read cart contents from localStorage and update totals
-            updateCart();
-
-            // Check if already logged in
-            if (getLoggedInUser())
-            {
-                doLogin(getLoggedInUser());
-            }
-            else
-            {
-                doLogout();
-            }
-
-            // Event handlers
-            couponInput.addEventListener("keyup", handleCouponBox, false);
-            menuLogin.addEventListener("click", showLoginScreen);
-            registerLoginLink.addEventListener("click", showLoginScreen);
-            loginRegisterLink.addEventListener("click", showRegisterScreen);
-            loginSubmitBtn.addEventListener("click", handleLogin);
-            registerSubmitBtn.addEventListener("click", handleRegister);
-            checkoutBtn.addEventListener("click", doCheckout);
-            menuLogout.addEventListener("click", doLogout);
-
-            // Display products
-            displayProducts();
-        });
-    </script>
-
   </body>
 </html>
