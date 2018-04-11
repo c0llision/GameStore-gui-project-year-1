@@ -8,6 +8,18 @@ function createHTMLTag(type, className, parentTag)
    return tag
 }
 
+function processLogin()
+{
+    if (getLoggedInUser())
+    {
+        doLogin(getLoggedInUser());
+    }
+    else
+    {
+        doLogout();
+    }
+}
+
 function doLogin(username)
 {
     $('#menuLogin').addClass("d-none");

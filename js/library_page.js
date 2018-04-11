@@ -28,10 +28,12 @@ $(document).ready(function () {
     var container = document.getElementById("container");
     var menuLogout = document.getElementById('menuLogout');
 
-    // Check if already logged in
-    if (getLoggedInUser())
+    // Check if already logged in, redirect to index if not logged in
+    processLogin();
+
+    if (!getLoggedInUser())
     {
-        doLogin(getLoggedInUser())
+        window.location.replace("index.html");
     }
 
     // Event handlers

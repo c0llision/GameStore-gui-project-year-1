@@ -274,14 +274,7 @@ $(document).ready(function () {
     updateCart();
 
     // Check if already logged in
-    if (getLoggedInUser())
-    {
-        doLogin(getLoggedInUser());
-    }
-    else
-    {
-        doLogout();
-    }
+    processLogin();
 
     // Event handlers
     couponInput.addEventListener("keyup", handleCouponBox, false);
