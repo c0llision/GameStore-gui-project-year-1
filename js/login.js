@@ -1,14 +1,29 @@
 var MIN_USERNAME_LENGTH = 4;
 var MIN_PASSWORD_LENGTH = 4;
 
-function createUser(username, password)
+function user()
 {
-    localStorage.setItem("user-" + username, password);
+    this.username = '';
+    this.email = '';
+    this.phone = '';
+    this.password = '';
+}
+
+function saveUser(user)
+{
+    localStorage.setItem('user-' + user.username, JSON.stringify(user));
+}
+
+function loadUser(username)
+{
+    return JSON.parse(localStorage.getItem('user-' + username));
 }
 
 function checkPassword(username, password)
 {
-    if (localStorage.getItem("user-" + username) === password)
+    user = loadUser(username)
+
+    if (user.password === password)
     {
         return true;
     }
@@ -29,6 +44,7 @@ function isUsernameTaken(username)
         return false;
     }
 }
+
 
 function getLoggedInUser()
 {

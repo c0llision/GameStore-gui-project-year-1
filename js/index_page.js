@@ -230,7 +230,10 @@ function handleRegister()
         return false;
     }
 
-    createUser(username, password);
+    userDetails = new user();
+    userDetails.username = username;
+    userDetails.password = password;
+    saveUser(userDetails);
     $('#registerScreen').modal('hide');
     doLogin(username);
     return true;
