@@ -23,6 +23,11 @@ function checkPassword(username, password)
 {
     user = loadUser(username)
 
+    if (user == null)
+    {
+        return false;
+    }
+
     if (user.password === password)
     {
         return true;
