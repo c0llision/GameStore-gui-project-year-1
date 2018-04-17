@@ -40,7 +40,12 @@ $(document).ready(function () {
         window.location.replace("index.html");
     }
 
-    menuLogout.addEventListener("click", doLogout);
+    // Event handlers
+    menuLogout.addEventListener("click", function() {
+        doLogout();
+        window.location.replace("index.html");
+    });
+
     submitBtn.addEventListener("click", submitChanges);
 
     userDetails = loadUser(username);
