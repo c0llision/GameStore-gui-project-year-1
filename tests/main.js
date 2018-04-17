@@ -72,7 +72,7 @@ eval(fs.readFileSync('js/library.js')+'');
 // ---- login.js tests ----
     test.setTestFile('login.js');
 
-    userDetails = new user();
+    userDetails = new User();
     userDetails.username = 'test';
     userDetails.password = 'test';
     saveUser(userDetails);
