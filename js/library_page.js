@@ -27,6 +27,7 @@ $(document).ready(function () {
     // Page elements
     var container = document.getElementById("container");
     var menuLogout = document.getElementById('menuLogout');
+    var menuSettings = document.getElementById('menuSettings');
 
     // Check if already logged in, redirect to index if not logged in
     processLogin();

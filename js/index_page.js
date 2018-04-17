@@ -205,6 +205,8 @@ function handleRegister()
     username = registerUsernameInput.value;
     password = registerPasswordInput.value;
     password2 = registerPasswordInput2.value;
+    email = registerEmailInput.value;
+    phone = registerPhoneInput.value;
 
     if (username.length < MIN_USERNAME_LENGTH)
     {
@@ -233,6 +235,8 @@ function handleRegister()
     userDetails = new User();
     userDetails.username = username;
     userDetails.password = password;
+    userDetails.email = email;
+    userDetails.phone = phone;
     saveUser(userDetails);
     $('#registerScreen').modal('hide');
     doLogin(username);
@@ -249,6 +253,7 @@ $(document).ready(function () {
     var grandTotalMsg = document.getElementById('grandTotalMsg');
     var subTotalMsg = document.getElementById('subTotalMsg');
     var menuLogin = document.getElementById('menuLogin');
+    var menuSettings = document.getElementById('menuSettings');
     var menuLogout = document.getElementById('menuLogout');
     var welcomeMsg = document.getElementById('welcomeMsg');
     var usernameMsg = document.getElementById('usernameMsg');

@@ -25,6 +25,7 @@ function doLogin(username)
     $('#menuLogin').addClass("d-none");
     $('#menuLogout').removeClass("d-none");
     $('#menuLibrary').removeClass("d-none");
+    $('#menuSettings').removeClass("d-none");
     localStorage.setItem("LoggedInUser", username);
     welcomeMsg.classList.remove('invisible');
     usernameMsg.innerHTML = username;
@@ -36,6 +37,7 @@ function doLogout()
     $('#menuLogin').removeClass("d-none");
     $('#menuLogout').addClass("d-none");
     $('#menuLibrary').addClass("d-none");
+    $('#menuSettings').addClass("d-none");
     logout();
     welcomeMsg.classList.add('invisible');
     usernameMsg.innerHTML = '';
