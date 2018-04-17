@@ -230,7 +230,7 @@ function handleRegister()
         return false;
     }
 
-    userDetails = new user();
+    userDetails = new User();
     userDetails.username = username;
     userDetails.password = password;
     saveUser(userDetails);

@@ -1,7 +1,7 @@
 var MIN_USERNAME_LENGTH = 4;
 var MIN_PASSWORD_LENGTH = 4;
 
-function user()
+function User()
 {
     this.username = '';
     this.email = '';
