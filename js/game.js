@@ -3,16 +3,7 @@ function Game(id, name, price, discount, image) {
     this.title = name;
     this.price = price;
     this.discount = discount;
-    this.isDiscounted = false;
     this.image = image;
-
-    if (this.discount != 0)
-    {   
-        //-0.005 solves rounding problem, hopefully this will not create problems for adding totals
-        //changes actual price, sets boolean to true, so we see which has been disconnted (can add visual indication later)
-        //this.price = (this.price - (this.price * (this.discount/100)) - 0.005).toFixed(2);
-        this.isDiscounted = true;
-    }
 }
 
 
@@ -46,7 +37,6 @@ function getGameById(gameId)
             return newGameFromList(gameList[i]);
         }
     }
-    console.log('fuckled');
     return false;
 }
 

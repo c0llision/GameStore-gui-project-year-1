@@ -1,18 +1,17 @@
 function submitChanges() {
     loggedInUsername = getLoggedInUser();
     
-    // ugh! - why do I have to do this?
-    var emailInput = document.getElementById("editEmail");
-    var phoneInput = document.getElementById("editPhone");
-    var passwordInput = document.getElementById("editPassword");
+    var editEmail = document.getElementById("editEmail");
+    var editPhone = document.getElementById("editPhone");
+    var editPassword = document.getElementById("editPassword");
 
     newDetails = new User();
     newDetails.username = loggedInUsername;
-    newDetails.email = emailInput.value;
-    newDetails.phone = phoneInput.value;
-    if (passwordInput.value != '')
+    newDetails.email = editEmail.value;
+    newDetails.phone = editPassword.value;
+    if (editPassword.value != '')
     {
-        newDetails.password = passwordInput.value;
+        newDetails.password = editPassword.value;
     }
     else
     {
@@ -25,10 +24,10 @@ function submitChanges() {
 
 
 $(document).ready(function () {
-    var usernameInput = document.getElementById("editUsername");
-    var emailInput = document.getElementById("editEmail");
-    var phoneInput = document.getElementById("editPhone");
-    var passwordInput = document.getElementById("editPassword");
+    var editUsername = document.getElementById("editUsername");
+    var editEmail = document.getElementById("editEmail");
+    var editPhone = document.getElementById("editPhone");
+    var editPassword = document.getElementById("editPassword");
     var menuLogout = document.getElementById('menuLogout');
     var submitBtn = document.getElementById('submitChanges');
 
@@ -50,8 +49,8 @@ $(document).ready(function () {
 
     userDetails = loadUser(username);
 
-    usernameInput.value = userDetails.username;
-    emailInput.value = userDetails.email;
-    phoneInput.value = userDetails.phone;
+    editUsername.value = userDetails.username;
+    editEmail.value = userDetails.email;
+    editPhone.value = userDetails.phone;
 });
 

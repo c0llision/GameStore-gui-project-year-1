@@ -13,11 +13,6 @@ function isGameInCart(gameId)
 
 function removeFromCart(index, gameId)
 {
-  /*  if (typeof gameId !== undefined)
-    {
-        index = cart.indexOf(gameId);
-    }
-   */ 
     cart.splice(index, 1);
     saveCart();
 }

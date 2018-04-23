@@ -278,6 +278,11 @@ $(document).ready(function () {
     var registerLoginLink = document.getElementById('registerLoginLink');
     var registerSubmitBtn = document.getElementById('registerSubmitBtn');
 
+    // Display a random banner on page load
+    var carousel_items = document.getElementsByClassName('carousel-item');
+    var random_index = Math.floor(Math.random() * carousel_items.length);
+    carousel_items[random_index].classList.add("active");
+
     // Read cart contents from localStorage and update totals
     updateCart();
 
