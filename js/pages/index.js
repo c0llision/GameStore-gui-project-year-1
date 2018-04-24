@@ -2,6 +2,7 @@
     all code specific to the index page, such as DOM manipulations and event handlers. */
 
 var couponInput;
+var searchBox;
 
 function showAlertMessage(message) {
     /* Show an alert message on the page using bootstrap
@@ -15,10 +16,10 @@ function showAlertMessage(message) {
     alertMessage.innerHTML = message;
 }
 
-function displayProducts() {
+function displayProducts(games) {
     /* Displays the products on the page. Dynamically creates the HTML tags necessary inside a tag with id="container"
 
-      {param} None
+      {param} games - array - array of games to display
       {return} None */
 
     var container = document.getElementById("container");
@@ -118,6 +119,25 @@ function updateGrandTotal()
 
     var grandTotalMsg = document.getElementById('grandTotalMsg');
     grandTotalMsg.innerHTML = getGrandTotal().toFixed(2);
+}
+
+function handleSearchBox()
+{
+    /* handler for searchBox keydown. Checks threw games array and see if any title contains the search term
+
+      {param} None
+      {return} None */
+
+   found_games = [];
+   for (var i=0; i < games.length; i++)
+   {
+        if (games[i].title.toLowerCase().includes(searchBox.value.toLowerCase()))
+        {
+            found_games.push(games[i]);
+        }
+   }
+
+   displayProducts(found_games);
 }
 
 function handleCouponBox()
@@ -343,6 +363,7 @@ $(document).ready(function () {
     var menuLogin = document.getElementById('menuLogin');
     var checkoutBtn = document.getElementById('checkoutBtn');
     couponInput = document.getElementById('couponInput');
+    searchBox = document.getElementById('searchBox');
 
     // Login popup elements
     var loginRegisterLink = document.getElementById('loginRegisterLink');
@@ -359,6 +380,7 @@ $(document).ready(function () {
 
     // Event handlers
     couponInput.addEventListener("keyup", handleCouponBox, false);
+    searchBox.addEventListener("keyup", handleSearchBox, false);
     checkoutBtn.addEventListener("click", doCheckout);
     menuLogin.addEventListener("click", showLoginScreen);
 
@@ -373,5 +395,5 @@ $(document).ready(function () {
     updateCart();
 
     // Display products
-    displayProducts();
+    displayProducts(games);
 });
