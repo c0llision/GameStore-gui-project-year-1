@@ -23,18 +23,18 @@ function displayProducts() {
     {
         if (i % 3 == 0)
         {
-          var row = createHTMLTag('div', 'row', container);
+          var row = createHTMLTag('div', container,'row');
         }
 
-        var col = createHTMLTag('div', 'col-md-4', row);
-        var title = createHTMLTag('div', 'h6', col);
-        var img = createHTMLTag('img', 'itemImg', col);
-        var priceTag = createHTMLTag('p', 'priceTag', col);
-        var addToCartBtn = createHTMLTag('button', 'btn btn-primary', col);
+        var col = createHTMLTag('div', row, 'col-md-4');
+        var title = createHTMLTag('div', col, 'h6');
+        var img = createHTMLTag('img', col, 'itemImg');
+        var priceTag = createHTMLTag('p', col, 'priceTag');
+        var addToCartBtn = createHTMLTag('button', col, 'btn btn-primary');
 
         // hacky AF
-        var brTag = createHTMLTag('br', '', col);
-        var brTag = createHTMLTag('br', '', col);
+        var brTag = createHTMLTag('br', col);
+        var brTag = createHTMLTag('br', col);
 
         var game = games[i];
 
@@ -160,12 +160,12 @@ function updateCart()
 
     for (var i=0; i < cart.length; i++)
     {
-        var row = createHTMLTag('tr','',cartDiv);
-        var heading = createHTMLTag('th','', row);
-        var title = createHTMLTag('td','',row);
-        var price = createHTMLTag('td','',row);
-        var close = createHTMLTag('td','',row);
-        var closeBtn = createHTMLTag('button', 'close', close);
+        var row = createHTMLTag('tr', cartDiv);
+        var heading = createHTMLTag('th', row);
+        var title = createHTMLTag('td', row);
+        var price = createHTMLTag('td', row);
+        var close = createHTMLTag('td', row);
+        var closeBtn = createHTMLTag('button', close, 'close');
 
         var gameDetails = getGameById(cart[i]);
         newSubTotal += parseFloat(gameDetails.price.toFixed(2));

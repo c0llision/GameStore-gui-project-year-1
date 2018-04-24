@@ -12,12 +12,12 @@ function displayLibrary() {
     {
         if (i % 3 == 0)
         {
-          var row = createHTMLTag('div', 'row', container);
+          var row = createHTMLTag('div', container, 'row');
         }
 
-        var col = createHTMLTag('div', 'col-md-4', row);
-        var title = createHTMLTag('div', 'h6', col);
-        var img = createHTMLTag('img', 'itemImg', col);
+        var col = createHTMLTag('div', row, 'col-md-4');
+        var title = createHTMLTag('div', col, 'h6');
+        var img = createHTMLTag('img', col, 'itemImg');
 
         var gameId = library[i];
 

@@ -16,7 +16,7 @@ function submitChanges() {
     newDetails = new User();
     newDetails.username = loggedInUsername;
     newDetails.email = editEmail.value;
-    newDetails.phone = editPassword.value;
+    newDetails.phone = editPhone.value;
     if (editPassword.value != '')
     {
         newDetails.password = editPassword.value;

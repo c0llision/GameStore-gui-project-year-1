@@ -1,13 +1,13 @@
 /*  main.js
     Code used on all of the pages */
 
-function createHTMLTag(type, className, parentTag)
+function createHTMLTag(type, parentTag, className)
 {
     /* Dynamically creates a HTML tag
 
       {param} type - string - type of tag to create (such as <br> <div>)
-      {param} className - string - name of class to apply to tag
       {param} parentTag - string - id of tag to create the new tag inside of
+      {param} className - string - name of class to apply to tag
       {return} Tag - DOM object of newly created tag */
 
    var tag = document.createElement(type);
