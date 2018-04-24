@@ -58,6 +58,3 @@ function loadCart()
         cart = [];
     }
 }
-
-
-loadCart();

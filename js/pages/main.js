@@ -1,6 +1,11 @@
 /*  main.js
     Code used on all of the pages */
 
+var menuSettings;
+var welcomeMsg;
+var usernameMsg;
+var menuLogout;
+
 function createHTMLTag(type, parentTag, className)
 {
     /* Dynamically creates a HTML tag
@@ -64,3 +69,14 @@ function doLogout()
     usernameMsg.innerHTML = '';
 }
 
+$(document).ready(function () {
+    menuSettings = document.getElementById('menuSettings');
+    welcomeMsg = document.getElementById('welcomeMsg');
+    usernameMsg = document.getElementById('usernameMsg');
+    menuLogout = document.getElementById('menuLogout');
+
+    processLogin();
+
+    // Event handlers
+    menuLogout.addEventListener("click", doLogout);
+});

@@ -1,6 +1,10 @@
 /*  index.js
     all code specific to the settings page, such as DOM manipulations and event handlers. */
 
+var editEmail;
+var editPhone;
+var editPassword;
+
 function submitChanges() {
     /* event handler for settings form submit.
 
@@ -33,14 +37,11 @@ function submitChanges() {
 
 $(document).ready(function () {
     var editUsername = document.getElementById("editUsername");
-    var editEmail = document.getElementById("editEmail");
-    var editPhone = document.getElementById("editPhone");
-    var editPassword = document.getElementById("editPassword");
+    editEmail = document.getElementById("editEmail");
+    editPhone = document.getElementById("editPhone");
+    editPassword = document.getElementById("editPassword");
     var menuLogout = document.getElementById('menuLogout');
     var submitBtn = document.getElementById('submitChanges');
-
-    // Check if already logged in, redirect to index if not logged in
-    processLogin();
 
     if (!getLoggedInUser())
     {
@@ -49,7 +50,6 @@ $(document).ready(function () {
 
     // Event handlers
     menuLogout.addEventListener("click", function() {
-        doLogout();
         window.location.replace("index.html");
     });
 

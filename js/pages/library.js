@@ -7,7 +7,9 @@ function displayLibrary() {
       {param} None
       {return} None */
 
+    var container = document.getElementById("container");
     container.innerHTML = '';
+
     for (var i=0; i < library.length; i++)
     {
         if (i % 3 == 0)
@@ -31,12 +33,7 @@ function displayLibrary() {
 
 $(document).ready(function () {
     // Page elements
-    var container = document.getElementById("container");
     var menuLogout = document.getElementById('menuLogout');
-    var menuSettings = document.getElementById('menuSettings');
-
-    // Check if already logged in, redirect to index if not logged in
-    processLogin();
 
     if (!getLoggedInUser())
     {
@@ -45,7 +42,6 @@ $(document).ready(function () {
 
     // Event handlers
     menuLogout.addEventListener("click", function() {
-        doLogout();
         window.location.replace("index.html");
     });
 

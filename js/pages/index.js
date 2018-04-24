@@ -1,6 +1,7 @@
 /*  index.js
     all code specific to the index page, such as DOM manipulations and event handlers. */
 
+var couponInput;
 
 function showAlertMessage(message) {
     /* Show an alert message on the page using bootstrap
@@ -8,6 +9,8 @@ function showAlertMessage(message) {
       {param} message - string - Message to display
       {return} None */
 
+    var alertBox = document.getElementById('alertBox');
+    var alertMessage = document.getElementById('alertMessage');
     alertBox.style="display:block;";
     alertMessage.innerHTML = message;
 }
@@ -18,7 +21,9 @@ function displayProducts() {
       {param} None
       {return} None */
 
+    var container = document.getElementById("container");
     container.innerHTML = '';
+
     for (var i=0; i < games.length; i++)
     {
         if (i % 3 == 0)
@@ -85,6 +90,7 @@ function updateSubTotal(value)
       {param} value - int - value to change subTotal to
       {return} None */
 
+    var subTotalMsg = document.getElementById('subTotalMsg');
     subTotal = value;
     subTotalMsg.innerHTML = subTotal.toFixed(2);
     handleCouponBox();
@@ -97,6 +103,7 @@ function updateDiscount(percent)
       {param} value - int - value to change discount to
       {return} None */
 
+    var discountMsg = document.getElementById('discountMsg');
     discount = subTotal * (percent/100);
     discountMsg.innerHTML = discount.toFixed(2);
     updateGrandTotal();
@@ -109,6 +116,7 @@ function updateGrandTotal()
       {param} None
       {return} None */
 
+    var grandTotalMsg = document.getElementById('grandTotalMsg');
     grandTotalMsg.innerHTML = getGrandTotal().toFixed(2);
 }
 
@@ -119,6 +127,7 @@ function handleCouponBox()
       {param} None
       {return} None */
 
+    var couponMsg = document.getElementById('couponMsg');
     couponDiscount = getCouponDiscount(couponInput.value);
     if (couponInput.value == '')
     {
@@ -234,6 +243,8 @@ function displayRegisterError(message)
       {param} message - string - Message to display
       {return} None */
 
+   var registerInvalidMsgbox = document.getElementById('registerInvalidMsgbox');
+   var registerInvalidMsg = document.getElementById('registerInvalidMsg');
    registerInvalidMsgbox.classList.remove("d-none");
    registerInvalidMsg.innerHTML = message;
 }
@@ -245,6 +256,8 @@ function displayLoginError(message)
       {param} message - string - Message to display
       {return} None */
 
+   var loginInvalidMsgbox = document.getElementById('loginInvalidMsgbox');
+   var loginInvalidMsg = document.getElementById('loginInvalidMsg');
    loginInvalidMsgbox.classList.remove("d-none");
    loginInvalidMsg.innerHTML = message;
 }
@@ -257,6 +270,8 @@ function handleLogin()
       {param} None
       {return} None */
 
+    var loginUsernameInput = document.getElementById('loginUsernameInput');
+    var loginPasswordInput = document.getElementById('loginPasswordInput');
     username = loginUsernameInput.value;
     password = loginPasswordInput.value;
 
@@ -278,6 +293,9 @@ function handleRegister()
       {param} None
       {return} None */
 
+    var registerUsernameInput = document.getElementById('registerUsernameInput');
+    var registerPasswordInput = document.getElementById('registerPasswordInput');
+    var registerPasswordInput2 = document.getElementById('registerPasswordInput2');
     username = registerUsernameInput.value;
     password = registerPasswordInput.value;
     password2 = registerPasswordInput2.value;
@@ -322,35 +340,15 @@ function handleRegister()
 
 $(document).ready(function () {
     // Page elements
-    var container = document.getElementById("container");
-    var couponInput = document.getElementById('couponInput');
-    var couponMsg = document.getElementById('couponMsg');
-    var discountMsg = document.getElementById('discountMsg');
-    var grandTotalMsg = document.getElementById('grandTotalMsg');
-    var subTotalMsg = document.getElementById('subTotalMsg');
     var menuLogin = document.getElementById('menuLogin');
-    var menuSettings = document.getElementById('menuSettings');
-    var menuLogout = document.getElementById('menuLogout');
-    var welcomeMsg = document.getElementById('welcomeMsg');
-    var usernameMsg = document.getElementById('usernameMsg');
     var checkoutBtn = document.getElementById('checkoutBtn');
-    var alertBox = document.getElementById('alertBox');
-    var alertMessage = document.getElementById('alertMessage');
+    couponInput = document.getElementById('couponInput');
 
     // Login popup elements
-    var loginUsernameInput = document.getElementById('loginUsernameInput');
-    var loginPasswordInput = document.getElementById('loginPasswordInput');
-    var loginInvalidMsgbox = document.getElementById('loginInvalidMsgbox');
-    var loginInvalidMsg = document.getElementById('loginInvalidMsg');
     var loginRegisterLink = document.getElementById('loginRegisterLink');
     var loginSubmitBtn = document.getElementById('loginSubmitBtn');
 
     // Register popup elements
-    var registerUsernameInput = document.getElementById('registerUsernameInput');
-    var registerPasswordInput = document.getElementById('registerPasswordInput');
-    var registerPasswordInput2 = document.getElementById('registerPasswordInput2');
-    var registerInvalidMsgbox = document.getElementById('registerInvalidMsgbox');
-    var registerInvalidMsg = document.getElementById('registerInvalidMsg');
     var registerLoginLink = document.getElementById('registerLoginLink');
     var registerSubmitBtn = document.getElementById('registerSubmitBtn');
 
@@ -359,21 +357,20 @@ $(document).ready(function () {
     var random_index = Math.floor(Math.random() * carousel_items.length);
     carousel_items[random_index].classList.add("active");
 
-    // Read cart contents from localStorage and update totals
-    updateCart();
-
-    // Check if already logged in
-    processLogin();
-
     // Event handlers
     couponInput.addEventListener("keyup", handleCouponBox, false);
+    checkoutBtn.addEventListener("click", doCheckout);
     menuLogin.addEventListener("click", showLoginScreen);
-    registerLoginLink.addEventListener("click", showLoginScreen);
+
     loginRegisterLink.addEventListener("click", showRegisterScreen);
     loginSubmitBtn.addEventListener("click", handleLogin);
+
+    registerLoginLink.addEventListener("click", showLoginScreen);
     registerSubmitBtn.addEventListener("click", handleRegister);
-    checkoutBtn.addEventListener("click", doCheckout);
-    menuLogout.addEventListener("click", doLogout);
+
+    // Read cart contents from localStorage and update totals
+    loadCart();
+    updateCart();
 
     // Display products
     displayProducts();
