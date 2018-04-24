@@ -1,4 +1,12 @@
+/*  index.js
+    all code specific to the settings page, such as DOM manipulations and event handlers. */
+
 function submitChanges() {
+    /* event handler for settings form submit.
+
+      {param} None
+      {return} None */
+
     loggedInUsername = getLoggedInUser();
     
     var editEmail = document.getElementById("editEmail");

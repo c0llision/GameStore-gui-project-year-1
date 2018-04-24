@@ -1,3 +1,6 @@
+/*  game.js
+    The game data is stored in an array, which is then used to construct objects that are stored in an object array */
+
 function Game(id, name, price, discount, image) {
     this.id = id;
     this.title = name;

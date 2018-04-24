@@ -1,12 +1,23 @@
-//  functions used on index.html page
+/*  index.js
+    all code specific to the index page, such as DOM manipulations and event handlers. */
 
 
 function showAlertMessage(message) {
+    /* Show an alert message on the page using bootstrap
+
+      {param} message - string - Message to display
+      {return} None */
+
     alertBox.style="display:block;";
     alertMessage.innerHTML = message;
 }
 
 function displayProducts() {
+    /* Displays the products on the page. Dynamically creates the HTML tags necessary inside a tag with id="container"
+
+      {param} None
+      {return} None */
+
     container.innerHTML = '';
     for (var i=0; i < games.length; i++)
     {
@@ -59,11 +70,21 @@ var discount = 0;
 
 function getGrandTotal()
 {
+    /* Returns the total after this coupon code is applied
+
+      {param} None
+      {return} grandTotal - int - Grand total */
+
     return subTotal - discount;
 }
 
 function updateSubTotal(value)
 {
+    /* Changes the subtotal, ensuring the page is updated
+
+      {param} value - int - value to change subTotal to
+      {return} None */
+
     subTotal = value;
     subTotalMsg.innerHTML = subTotal.toFixed(2);
     handleCouponBox();
@@ -71,6 +92,11 @@ function updateSubTotal(value)
 
 function updateDiscount(percent)
 {
+    /* Changes the discount percent, ensuring the page is updated and that grandTotal is recalculated
+
+      {param} value - int - value to change discount to
+      {return} None */
+
     discount = subTotal * (percent/100);
     discountMsg.innerHTML = discount.toFixed(2);
     updateGrandTotal();
@@ -78,11 +104,21 @@ function updateDiscount(percent)
 
 function updateGrandTotal()
 {
+    /* Updates the grandTotal displayed on the page to the actual value
+
+      {param} None
+      {return} None */
+
     grandTotalMsg.innerHTML = getGrandTotal().toFixed(2);
 }
 
 function handleCouponBox()
 {
+    /* handler for couponBox keydown. Check if coupon is valid and if so tries to apply it.
+
+      {param} None
+      {return} None */
+
     couponDiscount = getCouponDiscount(couponInput.value);
     if (couponInput.value == '')
     {
@@ -103,6 +139,11 @@ function handleCouponBox()
 
 function updateCart()
 {
+    /* Updates the items in the cart and the cart totals.
+
+      {param} None
+      {return} None */
+
     var cartTable = document.getElementById('cartTable');
     var cartDiv = document.getElementById('cart');
     cartDiv.innerHTML = '';
@@ -146,6 +187,11 @@ function updateCart()
 
 function doCheckout()
 {
+    /* Handler for checkout. Ensures user is logged in and adds items in cart to users library and clears the cart.
+
+      {param} None
+      {return} None */
+
     if (!getLoggedInUser())
     {
         showAlertMessage("You must be logged in to checkout.");
@@ -160,12 +206,22 @@ function doCheckout()
 
 function showLoginScreen()
 {
+    /* Shows the login modal and ensures register model is hidden
+
+      {param} None
+      {return} None */
+
     $('#loginScreen').modal('show');
     $('#registerScreen').modal('hide');
 }
 
 function showRegisterScreen()
 {
+    /* Shows the register modal and ensures login model is hidden
+
+      {param} None
+      {return} None */
+
     $('#loginScreen').modal('hide');
     $('#registerScreen').modal('show');
 }
@@ -173,12 +229,22 @@ function showRegisterScreen()
 
 function displayRegisterError(message)
 {
+    /* Displays an error on the register modal
+
+      {param} message - string - Message to display
+      {return} None */
+
    registerInvalidMsgbox.classList.remove("d-none");
    registerInvalidMsg.innerHTML = message;
 }
 
 function displayLoginError(message)
 {
+    /* Displays an error on the login modal
+
+      {param} message - string - Message to display
+      {return} None */
+
    loginInvalidMsgbox.classList.remove("d-none");
    loginInvalidMsg.innerHTML = message;
 }
@@ -186,6 +252,11 @@ function displayLoginError(message)
 
 function handleLogin()
 {
+    /* Login event handler. Checks username and password is valid and processes the login
+
+      {param} None
+      {return} None */
+
     username = loginUsernameInput.value;
     password = loginPasswordInput.value;
 
@@ -202,6 +273,11 @@ function handleLogin()
 
 function handleRegister()
 {
+    /* Register event handler. Checks details entered are valid and creates the account and logs in
+
+      {param} None
+      {return} None */
+
     username = registerUsernameInput.value;
     password = registerPasswordInput.value;
     password2 = registerPasswordInput2.value;

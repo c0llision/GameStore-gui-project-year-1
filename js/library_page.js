@@ -1,6 +1,12 @@
-//  functions used on library.html page
+/*  index.js
+    all code specific to the libary page, such as DOM manipulations and event handlers. */
 
 function displayLibrary() {
+    /* Displays the products in the users library. Dynamically creates the HTML tags necessary inside a tag with id="container"
+
+      {param} None
+      {return} None */
+
     container.innerHTML = '';
     for (var i=0; i < library.length; i++)
     {
