@@ -22,7 +22,7 @@ function formatCurrency(value, currency)
 
     if (currency === "euro")
     {
-        ret_val = parseFloat(value).toFixed(2) + " EUR";
+        ret_val = "€"  + parseFloat(value).toFixed(2);
     }
 
     return ret_val;
