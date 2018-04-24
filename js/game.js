@@ -2,6 +2,8 @@
     The game data is stored in an array, which is then used to construct objects that are stored in an object array */
 
 function Game(id, name, price, discount, image) {
+    /* Game object that contains a games details */
+
     this.id = id;
     this.title = name;
     this.price = price;
@@ -27,12 +29,22 @@ var gameList = [
 
 function newGameFromList(list)
 {
+    /* Helper function which creates a new game from a list of game details
+
+      {param} None
+      {return} Game() */
+
     return new Game(list[0], list[1], list[2], list[3], list[4]); 
 }
 
 
 function getGameById(gameId)
 {
+    /* Return a game object given its game id, returns false if there is no game with that id
+
+      {param} gameId - string - game id to construct
+      {return} Game() */
+
     for (var i=0; i < gameList.length; i++)
     {
         if (gameList[i][0] == gameId)
