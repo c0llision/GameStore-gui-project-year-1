@@ -46,7 +46,7 @@ function displayProducts(games) {
 
         title.innerHTML = game.title;
         img.src = game.image;
-        priceTag.innerHTML = "Price: " + game.price;
+        priceTag.innerHTML = "Price: " + formatCurrency(game.price);
         addToCartBtn.innerHTML = "Add To Cart";
         addToCartBtn.id = game.id;
 
@@ -93,7 +93,7 @@ function updateSubTotal(value)
 
     var subTotalMsg = document.getElementById('subTotalMsg');
     subTotal = value;
-    subTotalMsg.innerHTML = subTotal.toFixed(2);
+    subTotalMsg.innerHTML = formatCurrency(subTotal);
     handleCouponBox();
 }
 
@@ -106,7 +106,7 @@ function updateDiscount(percent)
 
     var discountMsg = document.getElementById('discountMsg');
     discount = subTotal * (percent/100);
-    discountMsg.innerHTML = discount.toFixed(2);
+    discountMsg.innerHTML = formatCurrency(discount);
     updateGrandTotal();
 }
 
@@ -118,7 +118,7 @@ function updateGrandTotal()
       {return} None */
 
     var grandTotalMsg = document.getElementById('grandTotalMsg');
-    grandTotalMsg.innerHTML = getGrandTotal().toFixed(2);
+    grandTotalMsg.innerHTML = formatCurrency(getGrandTotal());
 }
 
 function handleSearchBox()
@@ -201,7 +201,7 @@ function updateCart()
 
         heading.innerHTML = (i+1);
         title.innerHTML = gameDetails.title;
-        price.innerHTML = gameDetails.price;
+        price.innerHTML = formatCurrency(gameDetails.price);
         closeBtn.innerHTML = 'x';
         closeBtn.id = i;
         closeBtn.addEventListener("click", function() {

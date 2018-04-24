@@ -6,6 +6,28 @@ var welcomeMsg;
 var usernameMsg;
 var menuLogout;
 
+function formatCurrency(value, currency)
+{
+    /* Format a value as currency
+
+      {param} value - string/int - Value to format
+      {param} currency - string - Currency to format to (default: euro)
+      {return} string - Formatted currency */
+
+    if (!currency)
+    {
+        currency = "euro";
+    }
+
+
+    if (currency === "euro")
+    {
+        ret_val = parseFloat(value).toFixed(2) + " EUR";
+    }
+
+    return ret_val;
+}
+
 function createHTMLTag(type, parentTag, className)
 {
     /* Dynamically creates a HTML tag
