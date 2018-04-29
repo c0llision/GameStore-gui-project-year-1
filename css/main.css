@@ -3,3 +3,12 @@
     height: auto;
 }
 
+.register-form{
+font-size: 14px;
+color: #656666;
+}
+
+.form-control-feedback{
+  display: none;
+}
+

@@ -97,38 +97,61 @@
             <div class="alert alert-warning d-none" id="registerInvalidMsgbox">
                   <strong>Unable to register!</strong> <span id="registerInvalidMsg">Username or password invalid</span>
             </div>
-            <table>
-                <tr>
-                    <td>Choose your Username:</td>
-                    <td><input id="registerUsernameInput" type="text"></td>
-                </tr>
-                <tr>
-                    <td>Your name:</td>
-                    <td><input id="registerNameInput" type="text"></td>
-                </tr>
-                <tr>
-                    <td>Email:</td>
-                    <td><input id="registerEmailInput" type="email"></td>
-                </tr>
-                <tr>
-                    <td>Phone number:</td>
-                    <td><input id="registerPhoneInput" type="tel"></td>
-                </tr>
-                <tr>
-                <tr>
-                    <td>Password:</td>
-                    <td><input id="registerPasswordInput" type="password"></td>
-                </tr>
-                <tr>
-                    <td>Confirm Password:</td>
-                    <td><input id="registerPasswordInput2" type="password"></td>
-                </tr>
-             </table>
+            <form action="#" class="register-form" novalidate>
+                <div class="col-md-10 mb-3">
+                  <label for="validationUsername">Username:</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroupPrepend">@</span>
+                    </div>
+                    <input type="text" class="form-control" id="registerUsernameInput" placeholder="Username" aria-describedby="inputGroupPrepend" required>
+                    <div class="invalid-feedback">
+                      Please choose a username.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-10 mb-3">
+                  <label for="validationName">Full Name:</label>
+                  <input type="text" class="form-control" id="registerNameInput" placeholder="Enter your name" required>
+                  <div class="invalid-feedback">
+                    Cannot be blank
+                  </div>
+                </div>
+                <div class="col-md-10 mb-3">
+                  <label for="validationEmail">Email:</label>
+                  <input type="email" class="form-control" id="registerEmailInput" placeholder="Enter your email" required>
+                  <div class="invalid-feedback">
+                    Enter a valid email address
+                  </div>
+                </div>
+                <div class="col-md-10 mb-3">
+                  <label for="validationPhone">Phone Number:</label>
+                  <input type="number" class="form-control" id="registerPhoneInput" placeholder="Enter phone number" required>
+                  <div class="invalid-feedback">
+                    Enter a valid phone number
+                  </div>
+                </div>
+                <div class="col-md-10 mb-3">
+                  <label for="validationPassword">Password:</label>
+                  <input type="password" class="form-control" id="registerPasswordInput" placeholder="Enter your password" required>
+                  <div class="invalid-feedback">
+                    Cannot be blank
+                  </div>
+                </div>
+                <div class="col-md-10 mb-3">
+                  <label for="validationConfirmPassword">Confirm Password:</label>
+                  <input type="password" class="form-control" id="registerPasswordInput2" placeholder="Confirm your password" required>
+                  <div class="invalid-feedback">
+                    Cannot be blank
+                  </div>
+                </div>
+
              <a href="#" id="registerLoginLink">Login to an existing account</a>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" id="registerSubmitBtn" class="btn btn-primary">Register</button>
+            <button type="submit" id="registerSubmitBtn" class="btn btn-primary">Register</button>
+            </form>
           </div>
         </div>
       </div>

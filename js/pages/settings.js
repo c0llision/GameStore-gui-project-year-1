@@ -17,10 +17,12 @@ function submitChanges() {
     var editPhone = document.getElementById("editPhone");
     var editPassword = document.getElementById("editPassword");
 
-    newDetails = new User();
+    newDetails = loadUser(username);
     newDetails.username = loggedInUsername;
     newDetails.email = editEmail.value;
     newDetails.phone = editPhone.value;
+    newDetails.name = editName.value;
+
     if (editPassword.value != '')
     {
         newDetails.password = editPassword.value;
@@ -58,8 +60,29 @@ $(document).ready(function () {
     userDetails = loadUser(username);
 
     editUsername.value = userDetails.username;
-    //editName.value = userDetails.name;
+    editName.value = userDetails.name;
     editEmail.value = userDetails.email;
     editPhone.value = userDetails.phone;
+
+    (function() {
+      'use strict';
+      window.addEventListener('load', function() {
+
+        var forms = document.getElementsByClassName('register-form');
+        var validation = Array.prototype.filter.call(forms, function(form) {
+          form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            else
+            {
+                submitChanges();
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      }, false);
+    })();
 });
 

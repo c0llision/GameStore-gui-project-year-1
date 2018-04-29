@@ -321,6 +321,7 @@ function handleRegister()
     password2 = registerPasswordInput2.value;
     email = registerEmailInput.value;
     phone = registerPhoneInput.value;
+    name = registerNameInput.value;
 
     if (username.length < MIN_USERNAME_LENGTH)
     {
@@ -339,7 +340,7 @@ function handleRegister()
         displayRegisterError("Passwords don't match!");
         return false;
     }
-    
+
     if (isUsernameTaken(username))
     {
         displayRegisterError("Username is taken!");
@@ -351,6 +352,7 @@ function handleRegister()
     userDetails.password = password;
     userDetails.email = email;
     userDetails.phone = phone;
+    userDetails.name = name;
     saveUser(userDetails);
     $('#registerScreen').modal('hide');
     doLogin(username);
@@ -388,7 +390,27 @@ $(document).ready(function () {
     loginSubmitBtn.addEventListener("click", handleLogin);
 
     registerLoginLink.addEventListener("click", showLoginScreen);
-    registerSubmitBtn.addEventListener("click", handleRegister);
+
+    (function() {
+      'use strict';
+      window.addEventListener('load', function() {
+
+        var forms = document.getElementsByClassName('register-form');
+        var validation = Array.prototype.filter.call(forms, function(form) {
+          form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            else
+            {
+                handleRegister();
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      }, false);
+    })();
 
     // Read cart contents from localStorage and update totals
     loadCart();
