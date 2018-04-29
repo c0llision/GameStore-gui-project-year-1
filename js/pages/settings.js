@@ -57,25 +57,25 @@ $(document).ready(function () {
     editEmail.value = userDetails.email;
     editPhone.value = userDetails.phone;
 
-    (function() {
-      'use strict';
-      window.addEventListener('load', function() {
-
-        var forms = document.getElementsByClassName('register-form');
-        var validation = Array.prototype.filter.call(forms, function(form) {
-          form.addEventListener('submit', function(event) {
-            if (form.checkValidity() === false) {
-              event.preventDefault();
-              event.stopPropagation();
-            }
-            else
-            {
-                submitChanges();
-            }
-            form.classList.add('was-validated');
-          }, false);
-        });
-      }, false);
-    })();
 });
 
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+
+    var forms = document.getElementsByClassName('register-form');
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        else
+        {
+            submitChanges();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();

@@ -390,28 +390,6 @@ $(document).ready(function () {
     loginSubmitBtn.addEventListener("click", handleLogin);
 
     registerLoginLink.addEventListener("click", showLoginScreen);
-
-    (function() {
-      'use strict';
-      window.addEventListener('load', function() {
-
-        var forms = document.getElementsByClassName('register-form');
-        var validation = Array.prototype.filter.call(forms, function(form) {
-          form.addEventListener('submit', function(event) {
-            if (form.checkValidity() === false) {
-              event.preventDefault();
-              event.stopPropagation();
-            }
-            else
-            {
-                handleRegister();
-            }
-            form.classList.add('was-validated');
-          }, false);
-        });
-      }, false);
-    })();
-
     // Read cart contents from localStorage and update totals
     loadCart();
     updateCart();
@@ -419,3 +397,25 @@ $(document).ready(function () {
     // Display products
     displayProducts(games);
 });
+
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+
+    var forms = document.getElementsByClassName('register-form');
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        else
+        {
+            handleRegister();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+
