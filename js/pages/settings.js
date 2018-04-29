@@ -12,7 +12,7 @@ function submitChanges() {
       {return} None */
 
     loggedInUsername = getLoggedInUser();
-    
+
     var editEmail = document.getElementById("editEmail");
     var editPhone = document.getElementById("editPhone");
     var editPassword = document.getElementById("editPassword");
@@ -53,11 +53,12 @@ $(document).ready(function () {
         window.location.replace("index.html");
     });
 
-    submitBtn.addEventListener("click", submitChanges);
+    //submitBtn.addEventListener("click", submitChanges);
 
     userDetails = loadUser(username);
 
     editUsername.value = userDetails.username;
+    //editName.value = userDetails.name;
     editEmail.value = userDetails.email;
     editPhone.value = userDetails.phone;
 });

@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>GameStore - Homepage</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/main.css">
+
+    <!-- Bootstrap Javascript -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  <body>
+    <form action="#" class="register-form" novalidate>
+        <div class="col-md-2 mb-3">
+          <label for="validationUsername">Username:</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroupPrepend">@</span>
+            </div>
+            <input type="text" class="form-control" id="validationCustomUsername" placeholder="Username" aria-describedby="inputGroupPrepend" required>
+            <div class="invalid-feedback">
+              Please choose a username.
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2 mb-3">
+          <label for="validationName">Full Name:</label>
+          <input type="text" class="form-control" id="validationName" placeholder="Enter your name" required>
+          <div class="invalid-feedback">
+            Cannot be blank
+          </div>
+        </div>
+        <div class="col-md-2 mb-3">
+          <label for="validationEmail">Email:</label>
+          <input type="email" class="form-control" id="validationEmail" placeholder="Enter your email" required>
+          <div class="invalid-feedback">
+            Enter a valid email address
+          </div>
+        </div>
+        <div class="col-md-2 mb-3">
+          <label for="validationPhone">Phone Number:</label>
+          <input type="number" class="form-control" id="validationPhone" placeholder="Enter phone number" required>
+          <div class="invalid-feedback">
+            Enter a valid phone number
+          </div>
+        </div>
+        <div class="col-md-2 mb-3">
+          <label for="validationPassword">Password:</label>
+          <input type="password" class="form-control" id="validationPassword" placeholder="Enter your password" required>
+          <div class="invalid-feedback">
+            Cannot be blank
+          </div>
+        </div>
+        <div class="col-md-2 mb-3">
+          <label for="validationConfirmPassword">Confirm Password:</label>
+          <input type="password" class="form-control" id="validationConfirmPassword" placeholder="Confirm your password" required>
+          <div class="invalid-feedback">
+            Cannot be blank
+          </div>
+        </div>
+        <div class="col-md-2 mb-3">
+      <button class="btn btn-primary" id="submitBtn" type="submit">Register</button>
+      </div>
+    </form>
+    <script>
+    // Validate forms
+    (function() {
+      'use strict';
+      window.addEventListener('load', function() {
+
+        var forms = document.getElementsByClassName('register-form');
+        var validation = Array.prototype.filter.call(forms, function(form) {
+          form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            else
+            {
+                alert('lol');
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      }, false);
+    })();
+    </script>
+  <style>
+.register-form{
+font-size: 14px;
+color: #656666;
+}
+
+.form-control-feedback{
+  display: none;
+}
+  </style>
+  </body>
+</html>
