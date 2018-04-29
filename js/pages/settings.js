@@ -50,13 +50,6 @@ $(document).ready(function () {
         window.location.replace("index.html");
     }
 
-    // Event handlers
-    menuLogout.addEventListener("click", function() {
-        window.location.replace("index.html");
-    });
-
-    //submitBtn.addEventListener("click", submitChanges);
-
     userDetails = loadUser(username);
 
     editUsername.value = userDetails.username;

@@ -101,4 +101,7 @@ $(document).ready(function () {
 
     // Event handlers
     menuLogout.addEventListener("click", doLogout);
+    menuLogout.addEventListener("click", function() {
+        window.location.replace("index.html");
+    });
 });

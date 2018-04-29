@@ -40,10 +40,5 @@ $(document).ready(function () {
         window.location.replace("index.html");
     }
 
-    // Event handlers
-    menuLogout.addEventListener("click", function() {
-        window.location.replace("index.html");
-    });
-
     displayLibrary();
 });
