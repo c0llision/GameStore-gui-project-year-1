@@ -6,7 +6,7 @@
   <img src="https://media.giphy.com/media/89h6mzkmcBU10ji8FA/giphy.gif"/>
 </p>
 
-Live demo: <a href="https://c0llision.github.io/gui_project_y1/">https://c0llision.github.io/gui_project_y1/</a>
+Live demo: <a href="https://c0llision.github.io/GameStore-gui-project-year-1/">https://c0llision.github.io/gui_project_y1/</a>
 
 <h2>Brief</h2>
 <p>GameStore is a responsive demo webstore built with Bootstrap and HTML5. It features a fully-functional shopping cart and checkout system, login/logout functionality, editing of user details and a library to view purchased games.</p>
